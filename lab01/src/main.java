@@ -10,7 +10,7 @@ import classes.monsters.Dragon;
 import classes.monsters.Slime;
 import classes.monsters.Skeleton;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
 
         // Initialize possible heroes
