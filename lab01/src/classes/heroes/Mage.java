@@ -6,8 +6,8 @@ import classes.Hero;
 public class Mage extends Hero {
     private int mana;
 
-    public Mage(String name, int healthPoints, int strength, int mana) {
-        super(name, healthPoints, strength);
+    public Mage(String name, int healthPoints, int strength, int mana, double lucky) {
+        super(name, healthPoints, strength, lucky);
         this.mana = mana;
     }
 
@@ -15,19 +15,27 @@ public class Mage extends Hero {
         return mana;
     }
 
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
     public void useSpecialSkill(Character target) {
-        if (mana >= 10) {
-            int damage = getStrength() * 3;
-            target.changeHealth(damage);
-            mana -= 10;
-            System.out.println(getName() + " used a powerful spell on " + target.getName() + " for " + damage + " damage! Mana left: " + mana);
-        } else {
-            System.out.println(getName() + " does not have enough mana to use the special skill!");
+
+        // Check if random number is lower than lucky then use spell, otherwise fails
+
+        if (Math.random() > getLucky()) {
+            System.out.println(getName() + " tried to use a special skill but failed due to bad luck!");
+            return;
         }
+
+        int damage = getStrength() * 3;
+        target.changeHealth(damage);
+        setMana(getMana() - 10);
+        System.out.println(getName() + " used a powerful spell on " + target.getName() + " for " + damage + " damage! Mana left: " + getMana());
     }
 
     public void attack(Character target) {
-        int damage = getStrength();
+        int damage = -getStrength();
         target.changeHealth(damage);
         System.out.println(getName() + " cast a spell on " + target.getName() + " and deal " + damage + " damage.");
     }
