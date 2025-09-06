@@ -3,6 +3,7 @@ import classes.BuildScene;
 import classes.Hero;
 import classes.Monster;
 import classes.Scene;
+import classes.Weapon;
 import classes.heroes.Archer;
 import classes.heroes.Mage;
 import classes.monsters.Cockatrice;
@@ -11,9 +12,14 @@ import classes.monsters.Lizardman;
 import classes.monsters.Dragon;
 import classes.monsters.Slime;
 import classes.monsters.Skeleton;
+import classes.Weapons.*;
 
 public class main {
     public static void main(String[] args) {
+
+        Weapon[] easyLoot = new Weapon[] { new Bow(), new Staff() };
+        Weapon[] mediumLoot = new Weapon[] { new SuperBow(), new WillowStaff() };
+        Weapon[] hardLoot = new Weapon[] { new ExtremeSuperBow(), new MoonStaff(), new Sword() };
 
         // Generates the game scenario
         Scene[] scenes = BuildScene.generateScenes(3);
@@ -21,27 +27,27 @@ public class main {
         scenes[0].setEnvironment("Dungeon Entrance");
 
         scenes[0].setMonsters(new Monster[] { 
-            new Slime("Slime", 50, 5, 10),
-            new Skeleton("Skeleton", 70, 10, 15),
-            new Lizardman("Lizardman", 90, 15, 25)
+            new Slime("Slime", 50, 5, 10, easyLoot),
+            new Skeleton("Skeleton", 70, 10, 15, easyLoot),
+            new Lizardman("Lizardman", 90, 15, 25, mediumLoot)
         });
 
         scenes[1].setEnvironment("Dark Hallway");
 
         scenes[1].setMonsters(new Monster[] { 
-            new Dragon("Dragon", 150, 35, 80),
-            new Cockatrice("Cockatrice", 80, 30, 20)
+            new Dragon("Dragon", 150, 35, 80, hardLoot),
+            new Cockatrice("Cockatrice", 80, 30, 20, hardLoot)
         });
 
         scenes[2].setEnvironment("Demon King's Lair");
 
         scenes[2].setMonsters(new Monster[] { 
-            new DemonKing("Demon King", 200, 50, 100)
+            new DemonKing("Demon King", 200, 50, 100, hardLoot)
         });
 
         // Initialize possible heroes
-        Mage mage = new Mage("Wizard of Oz", 200, 15, 50, 0.5);
-        Archer archer = new Archer("Artemis", 300, 10, 30, 0.3);
+        Mage mage = new Mage("Wizard of Oz", 200, 15, 50, 0.8);
+        Archer archer = new Archer("Artemis", 300, 10, 30, 0.8);
 
         // Select one random hero
         Hero[] heroes = { mage, archer };
@@ -78,9 +84,20 @@ public class main {
                 }
 
                 System.out.println("The hero " + hero.getName() + " has defeated the " + monster.getName() + "!");
+                
+                hero.gainExperience(monster.getExperience());
 
-                //TODO: Run hero lucky, then use drop weapon of monster if lucky
-                //TODO: If new weapon better than current, get new weapon
+                if (Math.random() < hero.getLucky()) {
+                    Weapon loot = monster.dropLoot();
+                    System.out.println("Due to luck, " + hero.getName() + " found the " + loot.getName() + " on the " + monster.getName() + "!");
+                    
+                    if (hero.getWeapon().getDamage() < loot.getDamage()) {
+                        hero.equipWeapon(loot);
+                    } else {
+                        System.out.println("But the " + loot.getName() + " is not better than the current weapon.");
+                    }
+                }
+
             }
             System.out.println("----------------------------------------------------");
 
