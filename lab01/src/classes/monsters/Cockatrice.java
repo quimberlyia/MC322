@@ -1,11 +1,12 @@
 package classes.monsters;
 
 import classes.Monster;
+import classes.Weapon;
 
 public class Cockatrice extends Monster {
 
-    public Cockatrice(String name, int healthPoints, int strength, int experience) {
-        super(name, healthPoints, strength, experience);
+    public Cockatrice(String name, int healthPoints, int strength, int experience, Weapon[] loot) {
+        super(name, healthPoints, strength, experience, loot);
     }
 
     public void attack(classes.Character target) {
