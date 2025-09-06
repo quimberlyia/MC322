@@ -1,19 +1,9 @@
-package classes.weapons;
+package classes.Weapons;
 
-public class staff {
-    private int damage;
-    private int minNivel;
+import classes.Weapon;
 
-    public staff(int damage, int minNivel) {
-        this.damage = 10;
-        this.minNivel = 1;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public int getMinNivel() {
-        return minNivel;
-    }
+public class Staff extends Weapon {
+    public Staff() {
+        super(10, 1);
+    };
 }

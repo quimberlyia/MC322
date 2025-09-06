@@ -1,21 +1,9 @@
-package classes.weapons;
+package classes.Weapons;
 
+import classes.Weapon;
 
-public class Bow {
-    private int damage;
-    private int minNivel;
-
-    public Bow(int damage, int minNivel) {
-        this.damage = 10;
-        this.minNivel = 1;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public int getMinNivel() {
-        return minNivel;
+public class Bow extends Weapon {
+    public Bow() {
+        super(5, 1);
     }
 }
-

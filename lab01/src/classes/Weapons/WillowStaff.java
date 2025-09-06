@@ -2,8 +2,8 @@ package classes.Weapons;
 
 import classes.Weapon;
 
-public class Sword extends Weapon {
-    public Sword() {
+public class WillowStaff extends Weapon {
+    public WillowStaff() {
         super(15, 2);
     };
 }
