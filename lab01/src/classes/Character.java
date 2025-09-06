@@ -21,12 +21,16 @@ public abstract class Character {
         return strength;
     }
 
+    public void addStrength(int increment) {
+        this.strength += increment;
+    }
+
     public int getHealthPoints() {
         return healthPoints;
     }
 
     public void changeHealth(int damage) {
-        this.healthPoints -= damage;
+        this.healthPoints += damage;
         if (this.healthPoints < 0) {
             this.healthPoints = 0;
         }
@@ -34,6 +38,10 @@ public abstract class Character {
 
     public Weapon getWeapon() { // New method to get the weapon
         return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) { // New method to set the weapon
+        this.weapon = weapon;
     }
 
     public abstract void attack(Character target);
