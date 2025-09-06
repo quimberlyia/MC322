@@ -3,12 +3,15 @@ package classes.heroes;
 import classes.Character;
 import classes.Hero;
 
+import classes.Weapons.Staff;
+
 public class Mage extends Hero {
     private int mana;
 
     public Mage(String name, int healthPoints, int strength, int mana, double lucky) {
         super(name, healthPoints, strength, lucky);
         this.mana = mana;
+        setWeapon(new Staff());
     }
 
     public int getMana() {
@@ -35,7 +38,7 @@ public class Mage extends Hero {
     }
 
     public void attack(Character target) {
-        int damage = -getStrength();
+        int damage = -getStrength() * getWeapon().getDamage();
         target.changeHealth(damage);
         System.out.println(getName() + " cast a spell on " + target.getName() + " and deal " + damage + " damage.");
     }

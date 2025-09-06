@@ -3,12 +3,15 @@ package classes.heroes;
 import classes.Character;
 import classes.Hero;
 
+import classes.Weapons.Bow;
+
 public class Archer extends Hero {
     private int aim;
 
     public Archer(String name, int healthPoints, int strength, int aim, double lucky) {
         super(name, healthPoints, strength, lucky);
         this.aim = aim;
+        setWeapon(new Bow());
     }
 
     public int getAim() {
@@ -28,7 +31,7 @@ public class Archer extends Hero {
     }
 
     public void attack(Character target) {
-        int damage = -getStrength();
+        int damage = -getStrength() * getWeapon().getDamage();
         target.changeHealth(damage);
         System.out.println(getName() + " shot " + target.getName() + " and deal " + damage + " damage.");
     }
