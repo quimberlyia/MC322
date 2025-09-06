@@ -9,7 +9,7 @@ public class Lizardman extends Monster {
     }
 
     public void attack(classes.Character target) {
-        int damage = getStrength();
+        int damage = -getStrength();
         target.changeHealth(damage);
 
         String[] attacks = {

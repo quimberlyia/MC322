@@ -10,7 +10,7 @@ public class Monster extends Character {
     }
 
     public void attack(Character target) {
-        int damage = getStrength();
+        int damage = -getStrength();
         target.changeHealth(damage);
         System.out.println(getName() + " attacked " + target.getName() + " for " + damage + " damage.");
     }
