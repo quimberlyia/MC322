@@ -4,6 +4,6 @@ import classes.Weapon;
 
 public class SuperBow extends Weapon {
     public SuperBow() {
-        super(20, 2);
+        super(20, 2, "Super Bow");
     };
 }
