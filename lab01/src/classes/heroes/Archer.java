@@ -2,7 +2,10 @@ package classes.heroes;
 
 import classes.Character;
 import classes.Hero;
-
+import classes.actions.HealingPotion;
+import classes.actions.PreciseShot;
+import interfaces.CombatAction;
+import interfaces.Combatente;
 import classes.Weapons.Bow;
 
 public class Archer extends Hero {
@@ -12,6 +15,10 @@ public class Archer extends Hero {
         super(name, healthPoints, strength, lucky);
         this.aim = aim;
         setWeapon(new Bow());
+        
+        // Add combat actions
+        addAction(new PreciseShot());
+        addAction(new HealingPotion());
     }
 
     public int getAim() {
@@ -26,13 +33,14 @@ public class Archer extends Hero {
         }
 
         int damage = getStrength() * 2;
-        target.changeHealth(damage);
+        target.takeDamage(damage);
         System.out.println(getName() + " used a precise shot on " + target.getName() + " for " + damage + " damage!");
     }
 
-    public void attack(Character target) {
-        int damage = -getStrength() * getWeapon().getDamage();
-        target.changeHealth(damage);
-        System.out.println(getName() + " shot " + target.getName() + " and deal " + damage + " damage.");
+    @Override
+    public CombatAction chooseAction(Combatente target) {
+        if (action.isEmpty()) return null;
+        int idx = (int) (Math.random() * action.size());
+        return action.get(idx);
     }
 }

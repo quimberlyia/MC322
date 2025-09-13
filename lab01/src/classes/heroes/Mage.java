@@ -2,7 +2,10 @@ package classes.heroes;
 
 import classes.Character;
 import classes.Hero;
-
+import classes.actions.HealingPotion;
+import classes.actions.PowerfulSpell;
+import interfaces.CombatAction;
+import interfaces.Combatente;
 import classes.Weapons.Staff;
 
 public class Mage extends Hero {
@@ -12,6 +15,10 @@ public class Mage extends Hero {
         super(name, healthPoints, strength, lucky);
         this.mana = mana;
         setWeapon(new Staff());
+        
+        // Add combat actions
+        addAction(new PowerfulSpell());
+        addAction(new HealingPotion());
     }
 
     public int getMana() {
@@ -32,14 +39,15 @@ public class Mage extends Hero {
         }
 
         int damage = getStrength() * 3;
-        target.changeHealth(damage);
+        target.takeDamage(damage);
         setMana(getMana() - 10);
         System.out.println(getName() + " used a powerful spell on " + target.getName() + " for " + damage + " damage! Mana left: " + getMana());
     }
 
-    public void attack(Character target) {
-        int damage = -getStrength() * getWeapon().getDamage();
-        target.changeHealth(damage);
-        System.out.println(getName() + " cast a spell on " + target.getName() + " and deal " + damage + " damage.");
+    @Override
+    public CombatAction chooseAction(Combatente target) {
+        if (action.isEmpty()) return null;
+        int idx = (int) (Math.random() * action.size());
+        return action.get(idx);
     }
 }
