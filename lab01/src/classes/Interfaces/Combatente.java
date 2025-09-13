@@ -6,5 +6,5 @@ public interface Combatente {
     int getHealthPoints();
     void getDamage(int dano);
     void getCure(int cura);
-    CombactAction escolherAcao(Combatente alvo);
+    CombatAction escolherAcao(Combatente alvo);
 }
