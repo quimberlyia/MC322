@@ -1,4 +1,4 @@
-package classes.Interfaces;
+package classes.interfaces;
 
 public interface Combatente {
     String getNome();
