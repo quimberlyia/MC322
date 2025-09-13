@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
-import classes.interfaces.CombactAction;
+import interfaces.CombatAction;
 
 public abstract class Hero extends Character {
 
@@ -13,10 +13,10 @@ public abstract class Hero extends Character {
     private int experience = 0;
     private double lucky = 0;
 
-    protected List<CombactAction> action = new ArrayList<>();
+    protected List<CombatAction> action = new ArrayList<>();
 
     @Override
-    public CombactAction pickAction() {
+    public CombatAction chooseAction() {
         if (action.isEmpty()) return null;
         Random rand = new Random();
         int idx = rand.nextInt(action.size());

@@ -2,10 +2,10 @@ package classes;
 
 import java.util.List;
 
-import classes.interfaces.CombactAction;
-import classes.interfaces.Combatente;
-import classes.interfaces.Item;
-import classes.interfaces.Lootable;
+import interfaces.CombatAction;
+import interfaces.Combatente;
+import interfaces.Item;
+import interfaces.Lootable;
 
 import java.util.ArrayList;
 
@@ -14,25 +14,25 @@ public class Monster extends Character implements Lootable  {
 
     private int experience;
     private Weapon[] loot;
-    protected List<CombactAction> actions = new ArrayList<>();
+    protected List<CombatAction> actions = new ArrayList<>();
 
     @Override
-    public void getCure(int amount) {
+    public void heal(int amount) {
         return ;
     }
 
     @Override
-    public String getNome() {
+    public String getName() {
         return getName();
     }
 
     @Override
-    public CombactAction pickAction(Combatente target) {
-        return pickAction(target);
+    public CombatAction chooseAction(Combatente target) {
+        return chooseAction(target);
     }
 
     @Override
-    public CombactAction pickAction() {
+    public CombatAction chooseAction() {
         if (actions.isEmpty()) return null;
         return actions.get(0);
     }
@@ -67,11 +67,11 @@ public class Monster extends Character implements Lootable  {
         return (Item) loot[index];
     }
 
-    public List<CombactAction> getActions() {
+    public List<CombatAction> getActions() {
         return actions;
     }
 
-    public void addAction(CombactAction action) {
+    public void addAction(CombatAction action) {
         actions.add(action);
     }
 

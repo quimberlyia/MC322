@@ -1,7 +1,7 @@
 package classes;
 
-import classes.interfaces.CombactAction;
-import classes.interfaces.Combatente;
+import interfaces.CombatAction;
+import interfaces.Combatente;
 
 public abstract class Character implements Combatente {
 
@@ -60,7 +60,7 @@ public abstract class Character implements Combatente {
 
     public abstract void attack(Character target);
 
-    public abstract CombactAction pickAction();
+    public abstract CombatAction chooseAction();
 
     public void showStatus() {
         System.out.println("Player: " + name + ", Health Points: " + healthPoints + ", Strength: " + strength);
