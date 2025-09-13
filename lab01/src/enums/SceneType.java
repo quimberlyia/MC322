@@ -3,9 +3,9 @@ import classes.Hero;
 
 public enum SceneType {
     // Implementing description, and method to applyEffect(Hero hero) and describeScene.
-    DUNGEON_ENTRANCE("Description 1"),
-    DARK_HALLWAY("Description 2"),
-    MONSTER_LAIR("Description 3");
+    DUNGEON_ENTRANCE("Castle of the Demon King"),
+    DARK_HALLWAY("Dark Hallway to the Demon King"),
+    MONSTER_LAIR("Demon King's Room");
 
     private String description;
 
@@ -19,9 +19,5 @@ public enum SceneType {
 
     public void applyEffect(Hero hero) {
         // Implement effect on hero (undefined)
-    }
-
-    public String describeScene() {
-        return getDescription();
     }
 }
