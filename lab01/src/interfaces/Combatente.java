@@ -1,10 +1,10 @@
 package interfaces;
 
 public interface Combatente {
-    String getNome();
+    String getName();
     boolean isAlive();
     int getHealthPoints();
-    void getDamage(int dano);
-    void getCure(int cura);
-    CombatAction escolherAcao(Combatente alvo);
+    void takeDamage(int damage);
+    void heal(int amount);
+    CombatAction chooseAction(Combatente target);
 }
