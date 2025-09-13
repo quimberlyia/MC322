@@ -9,8 +9,9 @@ public class CombatScene implements Scene {
     private SceneType type;
     private Combatente[] monsters; //TODO: Change to monster array
 
-    public CombatScene(SceneType type) {
+    public CombatScene(SceneType type, Combatente[] monsters) {
         this.type = type;
+        this.monsters = monsters;
     }
 
     @Override
