@@ -1,4 +1,4 @@
-package classes.interfaces;
+package interfaces;
 
 public interface Event {
     public void checkTrigger();

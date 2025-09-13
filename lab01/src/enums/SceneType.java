@@ -1,4 +1,4 @@
-package classes.enums;
+package enums;
 import classes.Hero;
 
 public enum SceneType {

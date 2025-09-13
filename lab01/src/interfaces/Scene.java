@@ -1,7 +1,7 @@
-package classes.interfaces;
+package interfaces;
 
 import classes.Hero;
-import classes.enums.SceneType;
+import enums.SceneType;
 
 public interface Scene {
     public void Start(Hero hero);
