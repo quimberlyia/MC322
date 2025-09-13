@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface CombatAction {
-    void executar(Combatente user, Combatente target);
+    void execute(Combatente user, Combatente target);
 }
