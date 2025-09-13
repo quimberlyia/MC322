@@ -3,9 +3,9 @@ package classes;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Random;
 
 import interfaces.CombatAction;
+import interfaces.Combatente;
 
 public abstract class Hero extends Character {
 
@@ -16,12 +16,7 @@ public abstract class Hero extends Character {
     protected List<CombatAction> action = new ArrayList<>();
 
     @Override
-    public CombatAction chooseAction() {
-        if (action.isEmpty()) return null;
-        Random rand = new Random();
-        int idx = rand.nextInt(action.size());
-        return action.get(idx);
-}
+    public abstract CombatAction chooseAction(Combatente target);
 
     public Hero(String name, int healthPoints, int strength, double lucky) {
         super(name, healthPoints, strength);
@@ -48,7 +43,7 @@ public abstract class Hero extends Character {
         this.level++;
         this.lucky += 0.1;
         addStrength(level * 3);
-        changeHealth(level * 5);
+        heal(level * 5);
         System.out.println(getName() + " leveled up to level " + level + "!");
     }
 
@@ -61,6 +56,14 @@ public abstract class Hero extends Character {
     }
 
     public abstract void useSpecialSkill(Character target);
+
+    public void addAction(CombatAction combatAction) {
+        action.add(combatAction);
+    }
+
+    public List<CombatAction> getActions() {
+        return action;
+    }
 
     @Override
     public void showStatus() {

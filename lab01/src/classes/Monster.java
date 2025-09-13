@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.List;
+import java.util.Random;
 
 import interfaces.CombatAction;
 import interfaces.Combatente;
@@ -22,31 +23,17 @@ public class Monster extends Character implements Lootable  {
     }
 
     @Override
-    public String getName() {
-        return getName();
-    }
-
-    @Override
     public CombatAction chooseAction(Combatente target) {
-        return chooseAction(target);
-    }
-
-    @Override
-    public CombatAction chooseAction() {
         if (actions.isEmpty()) return null;
-        return actions.get(0);
+        Random rand = new Random();
+        int idx = rand.nextInt(actions.size());
+        return actions.get(idx);
     }
 
     public Monster(String name, int healthPoints, int strength, int experience, Weapon[] loot) {
         super(name, healthPoints, strength);
         this.experience = experience;
         this.loot = loot;
-    }
-
-    public void attack(Character target) {
-        int damage = -getStrength();
-        target.changeHealth(damage);
-        System.out.println(getName() + " attacked " + target.getName() + " for " + damage + " damage.");
     }
 
     public int getExperience() {

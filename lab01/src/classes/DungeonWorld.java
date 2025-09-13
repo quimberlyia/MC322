@@ -29,18 +29,18 @@ public class DungeonWorld implements World {
         Weapon[] hardLoot = new Weapon[] { new ExtremeSuperBow(), new MoonStaff(), new Sword() };
 
         scenes[0] = new CombatScene(SceneType.DUNGEON_ENTRANCE, new Monster[] { 
-            new Slime("Slime", 50, 5, 10, easyLoot),
-            new Skeleton("Skeleton", 70, 10, 15, easyLoot),
-            new Lizardman("Lizardman", 90, 15, 25, mediumLoot)
+            new Slime("Slime", 50, 5, 40, easyLoot),
+            new Skeleton("Skeleton", 70, 10, 80, easyLoot),
+            new Lizardman("Lizardman", 90, 15, 100, mediumLoot)
         });
 
         scenes[1] = new CombatScene(SceneType.DARK_HALLWAY, new Monster[] { 
-            new Dragon("Dragon", 150, 35, 80, hardLoot),
-            new Cockatrice("Cockatrice", 80, 30, 20, hardLoot)
+            new Dragon("Dragon", 150, 35, 150, hardLoot),
+            new Cockatrice("Cockatrice", 80, 30, 150, hardLoot)
         });
 
         scenes[2] = new CombatScene(SceneType.MONSTER_LAIR, new Monster[] { 
-            new DemonKing("Demon King", 200, 50, 100, hardLoot)
+            new DemonKing("Demon King", 200, 50, 200, hardLoot)
         });
     }
 

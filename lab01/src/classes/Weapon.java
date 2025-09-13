@@ -1,6 +1,7 @@
 package classes;
+import interfaces.Item;
 
-public abstract class Weapon {
+public abstract class Weapon implements Item {
     private int damage;
     private int minNivel;
     private String name;

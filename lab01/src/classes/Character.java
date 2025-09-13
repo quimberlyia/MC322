@@ -32,7 +32,7 @@ public abstract class Character implements Combatente {
         return healthPoints;
     }
 
-    public void changeHealth(int damage) {
+    private void changeHealth(int damage) {
         this.healthPoints += damage;
         if (this.healthPoints < 0) {
             this.healthPoints = 0;
@@ -54,13 +54,16 @@ public abstract class Character implements Combatente {
     }
 
     @Override
+    public void heal(int amount) {
+        changeHealth(amount);
+    }
+
+    @Override
     public boolean isAlive() {
         return healthPoints > 0;
     }
 
-    public abstract void attack(Character target);
-
-    public abstract CombatAction chooseAction();
+    public abstract CombatAction chooseAction(Combatente target);
 
     public void showStatus() {
         System.out.println("Player: " + name + ", Health Points: " + healthPoints + ", Strength: " + strength);
