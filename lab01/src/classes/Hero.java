@@ -1,11 +1,27 @@
 // The class hero should be a subclass of character
 package classes;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
+
+import classes.interfaces.CombactAction;
+
 public abstract class Hero extends Character {
 
     private int level = 1;
     private int experience = 0;
     private double lucky = 0;
+
+    protected List<CombactAction> action = new ArrayList<>();
+
+    @Override
+    public CombactAction pickAction() {
+        if (action.isEmpty()) return null;
+        Random rand = new Random();
+        int idx = rand.nextInt(action.size());
+        return action.get(idx);
+}
 
     public Hero(String name, int healthPoints, int strength, double lucky) {
         super(name, healthPoints, strength);

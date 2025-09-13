@@ -1,6 +1,9 @@
 package classes;
 
-public abstract class Character {
+import classes.interfaces.CombactAction;
+import classes.interfaces.Combatente;
+
+public abstract class Character implements Combatente {
 
     private String name;
     private int healthPoints;
@@ -36,17 +39,31 @@ public abstract class Character {
         }
     }
 
-    public Weapon getWeapon() { // New method to get the weapon
+    public Weapon getWeapon() {
         return weapon;
     }
 
-    public void setWeapon(Weapon weapon) { // New method to set the weapon
+    public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
 
+    // Implementação dos métodos da interface Combatente
+    @Override
+    public void takeDamage(int damage) {
+        changeHealth(-damage);
+    }
+
+    @Override
+    public boolean isAlive() {
+        return healthPoints > 0;
+    }
+
     public abstract void attack(Character target);
+
+    public abstract CombactAction pickAction();
 
     public void showStatus() {
         System.out.println("Player: " + name + ", Health Points: " + healthPoints + ", Strength: " + strength);
     }
 }
+
