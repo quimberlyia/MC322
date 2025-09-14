@@ -66,7 +66,10 @@ public abstract class Character implements Combatente {
     public abstract CombatAction chooseAction(Combatente target);
 
     public void showStatus() {
-        System.out.println("Player: " + name + ", Health Points: " + healthPoints + ", Strength: " + strength);
+        String healthBar = "[" + healthPoints + " HP]";
+        String strengthBar = "[" + strength + " Strength Points]";
+        System.out.println("  " + GameDisplay.CYAN + name + GameDisplay.RESET + " " + healthBar + 
+                          " | " + GameDisplay.YELLOW + strengthBar + GameDisplay.RESET);
     }
 }
 

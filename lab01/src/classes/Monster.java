@@ -64,6 +64,12 @@ public class Monster extends Character implements Lootable  {
 
     @Override
     public void showStatus() {
-        System.out.println("The monster " + getName() + " has " + getHealthPoints() + " health points, " + getStrength() + " strength, and is worth " + experience + " experience points.");
+        String healthBar = "[" + getHealthPoints() + " HP]";
+        String strengthBar = "[" + getStrength() + " Strength Points]";
+        System.out.println("  " + GameDisplay.BOLD + GameDisplay.RED + getName() + GameDisplay.RESET);
+        System.out.println("    " + healthBar + 
+                          " | " + GameDisplay.YELLOW + strengthBar + GameDisplay.RESET +
+                          " | " + GameDisplay.PURPLE + "Worth: " + experience + " EXP" + GameDisplay.RESET);
+        System.out.println();
     }
 }

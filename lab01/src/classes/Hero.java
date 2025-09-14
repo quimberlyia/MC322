@@ -44,7 +44,11 @@ public abstract class Hero extends Character {
         this.lucky += 0.1;
         addStrength(level * 3);
         heal(level * 5);
-        System.out.println(getName() + " leveled up to level " + level + "!");
+
+        System.out.println();
+        System.out.println(GameDisplay.YELLOW + GameDisplay.BOLD + "LEVEL UP!" + GameDisplay.RESET);
+        System.out.println(GameDisplay.YELLOW + getName() + " has reached level " + level + "!" + GameDisplay.RESET);
+        System.out.println();
     }
 
     public void gainExperience(int exp) {
@@ -67,17 +71,27 @@ public abstract class Hero extends Character {
 
     @Override
     public void showStatus() {
-        System.out.println("The hero " + getName() + " is at level " + level + " with " + getHealthPoints() + " health points, " + getStrength() + " strength, and " + experience + " experience points.");
+        String healthBar = "[" + getHealthPoints() + " HP]";
+        String strengthBar = "[" + getStrength() + " Strength Points]";
+        System.out.println("  " + GameDisplay.BOLD + GameDisplay.BLUE + getName() + GameDisplay.RESET + " Lv." + level);
+        System.out.println("    " + healthBar + 
+                          " | " + GameDisplay.YELLOW + strengthBar + GameDisplay.RESET +
+                          " | " + GameDisplay.PURPLE + "EXP: " + experience + "/100" + GameDisplay.RESET);
+        if (getWeapon() != null) {
+            System.out.println("    " + GameDisplay.CYAN + getWeapon().getName() + 
+                              " (+" + getWeapon().getDamage() + " DMG)" + GameDisplay.RESET);
+        }
+        System.out.println();
     }
 
     public void equipWeapon(Weapon weapon) {
 
         if (weapon.getMinNivel() > this.level) {
-            System.out.println(getName() + " cannot equip " + weapon.getName() + " because they are not at the required level.");
+            System.out.println(GameDisplay.YELLOW + getName() + " cannot equip " + weapon.getName() + " (requires level " + weapon.getMinNivel() + ")" + GameDisplay.RESET);
             return;
         }
 
         setWeapon(weapon);
-        System.out.println(getName() + " equipped " + weapon.getName() + "!");
+        System.out.println(GameDisplay.CYAN + getName() + " equipped " + weapon.getName() + "!" + GameDisplay.RESET);
     }
 }
