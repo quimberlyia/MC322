@@ -7,4 +7,5 @@ public interface Combatente {
     void takeDamage(int damage);
     void heal(int amount);
     CombatAction chooseAction(Combatente target);
+    int getStrength();
 }

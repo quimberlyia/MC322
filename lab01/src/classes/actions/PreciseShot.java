@@ -7,8 +7,8 @@ public class PreciseShot implements CombatAction {
     
     @Override
     public void execute(Combatente user, Combatente target) {
-        int damage = 15;
+        int damage = (user.getStrength() * 3) / 2;
         target.takeDamage(damage);
-        System.out.println(user.getName() + " used a precise shot on " + target.getName() + " for " + damage + " damage!");
+        System.out.println("The hero " + user.getName() + " used a precise shot on " + target.getName() + " for " + damage + " damage!");
     }
 }
