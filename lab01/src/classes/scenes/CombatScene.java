@@ -29,6 +29,7 @@ public class CombatScene implements Scene {
     @Override
     public void Start(Hero hero) {
         System.out.println("The hero enters the " + getSceneType().getDescription() + "!");
+        getSceneType().applyEffect(hero);
     }
 
     @Override
