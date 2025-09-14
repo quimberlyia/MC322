@@ -72,7 +72,6 @@ public class main {
                     System.out.println();
                 }
 
-                
                 System.out.println();
                 System.out.println(GameDisplay.GREEN + GameDisplay.BOLD + "VICTORY!" + GameDisplay.RESET);
                 System.out.println(GameDisplay.GREEN + hero.getName() + " has defeated the " + monster.getName() + "!" + GameDisplay.RESET);

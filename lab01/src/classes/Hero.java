@@ -53,9 +53,10 @@ public abstract class Hero extends Character {
 
     public void gainExperience(int exp) {
         this.experience += exp;
-        if (this.experience >= 100) {
+        while (this.experience >= 100)
+        {
             levelUp();
-            this.experience = 0;
+            this.experience -= 100;
         }
     }
 
