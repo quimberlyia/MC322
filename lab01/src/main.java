@@ -9,7 +9,7 @@ import classes.heroes.Archer;
 import classes.heroes.Mage;
 import interfaces.CombatAction;
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {
 
