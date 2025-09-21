@@ -8,6 +8,8 @@ import classes.Weapon;
 import classes.heroes.Archer;
 import classes.heroes.Mage;
 import interfaces.CombatAction;
+import classes.Exceptions.InvalidWeaponException;
+import classes.Exceptions.NotEnoughResourceException;
 
 public class Main {
 
@@ -82,13 +84,18 @@ public class Main {
                     Weapon loot = (Weapon) monster.dropLoot();
                     System.out.println(GameDisplay.PURPLE + "Lucky find! " + hero.getName() + " found " + loot.getName() + " from " + monster.getName() + "!" + GameDisplay.RESET);
 
-                    if (hero.getWeapon().getDamage() < loot.getDamage()) {
-                        hero.equipWeapon(loot);
-                    } else {
-                        System.out.println(GameDisplay.YELLOW + loot.getName() + " is not better than current weapon." + GameDisplay.RESET);
+                    try {
+                        if (hero.getWeapon().getDamage() < loot.getDamage()) {
+                            hero.equipWeapon(loot); 
+                        } else {
+                            System.out.println(GameDisplay.YELLOW + loot.getName() + " is not better than current weapon." + GameDisplay.RESET);
+                        }
+                    } catch (InvalidWeaponException e) {
+                        System.out.println(GameDisplay.RED + "[Erro] " + e.getMessage() + GameDisplay.RESET);
+                    } catch (NotEnoughResourceException e) {
+                        System.out.println(GameDisplay.RED + "[Erro] " + e.getMessage() + GameDisplay.RESET);
                     }
                 }
-
             }
             
             System.out.println();
