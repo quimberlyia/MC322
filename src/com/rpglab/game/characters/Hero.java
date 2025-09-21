@@ -2,6 +2,7 @@ package com.rpglab.game.characters;
 
 import java.util.List;
 
+import com.rpglab.game.Exceptions.InvalidWeaponException;
 import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.interfaces.Combatente;
 import com.rpglab.game.items.Weapon;
@@ -182,12 +183,13 @@ public abstract class Hero extends Character {
      * Displays appropriate messages for successful or failed equipment attempts.
      * 
      * @param weapon The Weapon to attempt to equip
+     * @throws InvalidWeaponException if the hero's level is too low to equip the weapon
      */
-    public void equipWeapon(Weapon weapon) {
+    public void equipWeapon(Weapon weapon) throws InvalidWeaponException {
 
         if (weapon.getMinLevel() > this.level) {
             System.out.println(GameDisplay.YELLOW + getName() + " cannot equip " + weapon.getName() + " (requires level " + weapon.getMinLevel() + ")" + GameDisplay.RESET);
-            return;
+            throw new InvalidWeaponException("Cannot equip weapon: level too low.");
         }
 
         setWeapon(weapon);
