@@ -49,7 +49,7 @@ public abstract class Character implements Combatente {
         this.weapon = weapon;
     }
 
-    // Implementação dos métodos da interface Combatente
+    // Implementation of the Combatente interface methods
     @Override
     public void takeDamage(int damage) {
         changeHealth(-damage);

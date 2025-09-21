@@ -3,12 +3,12 @@ import com.rpglab.game.interfaces.Item;
 
 public abstract class Weapon implements Item {
     private int damage;
-    private int minNivel;
+    private int minLevel;
     private String name;
 
-    public Weapon(int damage, int minNivel, String name) {
+    public Weapon(int damage, int minLevel, String name) {
         this.damage = damage;
-        this.minNivel = minNivel;
+        this.minLevel = minLevel;
         this.name = name;
     }
 
@@ -17,7 +17,7 @@ public abstract class Weapon implements Item {
     }
 
     public int getMinLevel() {
-        return minNivel;
+        return minLevel;
     }
 
     public String getName() {

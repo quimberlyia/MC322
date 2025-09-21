@@ -1,7 +1,5 @@
 package com.rpglab.game;
 
-import com.rpglab.game.Exceptions.InvalidWeaponException;
-import com.rpglab.game.Exceptions.NotEnoughResourceException;
 import com.rpglab.game.characters.Hero;
 import com.rpglab.game.characters.Monster;
 import com.rpglab.game.characters.heroes.Archer;
@@ -128,7 +126,7 @@ public class Main {
                         {
                             if (searchedLoot)
                             {
-                                System.out.println("You already have checked the loot.");
+                                System.out.println("You already checked for loot.");
                                 continue;
                             }
 
@@ -145,12 +143,12 @@ public class Main {
                                         System.out.println(GameDisplay.YELLOW + loot.getName() + " is not better than current weapon." + GameDisplay.RESET);
                                     }
                                 // } catch (InvalidWeaponException e) {
-                                //     System.out.println(GameDisplay.RED + "[Erro] " + e.getMessage() + GameDisplay.RESET);
+                                //     System.out.println(GameDisplay.RED + "[Error] " + e.getMessage() + GameDisplay.RESET);
                                 // } catch (NotEnoughResourceException e) {
-                                //     System.out.println(GameDisplay.RED + "[Erro] " + e.getMessage() + GameDisplay.RESET);
+                                //     System.out.println(GameDisplay.RED + "[Error] " + e.getMessage() + GameDisplay.RESET);
                                 // }
                             } else {
-                                System.out.println("Bad lucky! You didn't have any loot.");
+                                System.out.println("Bad luck! You didn't find any loot.");
                             }
                         }
                     }

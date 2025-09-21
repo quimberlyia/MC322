@@ -5,10 +5,7 @@ import com.rpglab.game.utils.InputManager;
 
 public class Menu {
 
-    private InputManager inputManager;
-
     public Menu() {
-        inputManager = new InputManager();
     }
 
     public int displayMenu(String title, String[] options) {
@@ -20,7 +17,7 @@ public class Menu {
         }
         
         System.out.println("==================================================================================");
-        return inputManager.readWholeNumber("Input your choice", 1, options.length);
+        return InputManager.readWholeNumber("Input your choice", 1, options.length);
     }
 
     public int displayMainMenu() {
@@ -29,6 +26,6 @@ public class Menu {
     }
 
     public void close() {
-        inputManager.close();
+        InputManager.close();
     }
 }

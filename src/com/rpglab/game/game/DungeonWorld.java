@@ -35,8 +35,8 @@ public class DungeonWorld implements World {
 
           scenes[0] = new CombatScene(SceneType.DUNGEON_ENTRANCE, new Monster[] {
             new Slime("Slime", 
-                newValue(50, lifeMult), // vida ajustada
-                newValue(5, damageMult), // dano ajustado
+                newValue(50, lifeMult), // adjusted life
+                newValue(5, damageMult), // adjusted damage
                 40, 
                 easyLoot
             ),
