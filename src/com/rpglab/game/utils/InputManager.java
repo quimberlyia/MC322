@@ -7,48 +7,48 @@ public class InputManager {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int readWholeNumber(String mensage, int min, int max) {
+    public static int readWholeNumber(String message, int min, int max) {
 
         while (true) {
-            System.out.print(mensage + " (" + min + " - " + max + ")  > ");
+            System.out.print(message + " (" + min + " - " + max + ")  > ");
             try {
                 String input = scanner.nextLine().trim();
                 if (input.isEmpty()) {
-                    System.out.println("Entrada vazia. Digite um número.");
+                    System.out.println("Empty input. Please enter a number.");
                     continue;
                 }
                 int value = Integer.parseInt(input);
                 if (value < min || value > max) {
-                    System.out.println("Valor fora do intervalo permitido.");
+                    System.out.println("Value out of allowed range.");
                     continue;
                 }
                 return value;
             } catch (NumberFormatException e) {
-                System.out.println("Valor inválido. Digite um número inteiro.");
+                System.out.println("Invalid value. Please enter an integer number.");
             } catch (NoSuchElementException e) {
-                throw new RuntimeException("Entrada não disponível.", e);
+                throw new RuntimeException("Input not available.", e);
             }
         }    
     }
 
-    public static String readString(String mensage) {
-        System.out.print(mensage);
-        return scanner.nextLine().trim(); //next line vai ate o enter e o trim tira os espacos
+    public static String readString(String message) {
+        System.out.print(message);
+        return scanner.nextLine().trim(); // nextLine goes until enter and trim removes spaces
     } 
 
-    public static boolean readYesNo(String mensage) {
+    public static boolean readYesNo(String message) {
         while (true) {
-            System.out.print(mensage + " (s/n): ");
-            String entrada = scanner.nextLine().trim().toLowerCase(); //to lowercase para aceitar maiusculas e minusculas
-            if (entrada.equals("s")) return true;
-            if (entrada.equals("n")) return false;
-            System.out.println("Entrada inválida. Digite apenas 's' ou 'n'.");
+            System.out.print(message + " (y/n): ");
+            String input = scanner.nextLine().trim().toLowerCase(); // toLowerCase to accept uppercase and lowercase
+            if (input.equals("y")) return true;
+            if (input.equals("n")) return false;
+            System.out.println("Invalid input. Please enter only 'y' or 'n'.");
         }
     }
     
-    public static void esperarEnter(String mensage) {
-        System.out.print(mensage);
-        scanner.nextLine(); // pausa até Enter
+    public static void waitForEnter(String message) {
+        System.out.print(message);
+        scanner.nextLine(); // pause until Enter
     }
 
     public static void close() {
