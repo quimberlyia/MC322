@@ -1,5 +1,7 @@
 package com.rpglab.game;
 
+import com.rpglab.game.Exceptions.InvalidWeaponException;
+import com.rpglab.game.Exceptions.NotEnoughResourceException;
 import com.rpglab.game.characters.Hero;
 import com.rpglab.game.characters.Monster;
 import com.rpglab.game.characters.heroes.Archer;
@@ -136,11 +138,17 @@ public class Main {
                                 Weapon loot = (Weapon) monster.dropLoot();
                                 System.out.println(GameDisplay.PURPLE + "Lucky find! " + hero.getName() + " found " + loot.getName() + " from " + monster.getName() + "!" + GameDisplay.RESET);
 
-                                if (hero.getWeapon().getDamage() < loot.getDamage()) {
-                                    hero.equipWeapon(loot);
-                                } else {
-                                    System.out.println(GameDisplay.YELLOW + loot.getName() + " is not better than current weapon." + GameDisplay.RESET);
-                                }
+                                // try {
+                                    if (hero.getWeapon().getDamage() < loot.getDamage()) {
+                                        hero.equipWeapon(loot); 
+                                    } else {
+                                        System.out.println(GameDisplay.YELLOW + loot.getName() + " is not better than current weapon." + GameDisplay.RESET);
+                                    }
+                                // } catch (InvalidWeaponException e) {
+                                //     System.out.println(GameDisplay.RED + "[Erro] " + e.getMessage() + GameDisplay.RESET);
+                                // } catch (NotEnoughResourceException e) {
+                                //     System.out.println(GameDisplay.RED + "[Erro] " + e.getMessage() + GameDisplay.RESET);
+                                // }
                             } else {
                                 System.out.println("Bad lucky! You didn't have any loot.");
                             }
