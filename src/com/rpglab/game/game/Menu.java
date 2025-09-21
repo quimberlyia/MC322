@@ -29,12 +29,20 @@ import com.rpglab.game.utils.InputManager;
  */
 public class Menu {
 
+    private InputManager inputManager;
+
     /**
      * Constructs a new Menu instance.
      * This constructor initializes a menu system ready to display
      * formatted interfaces and handle user interactions.
      */
+
     public Menu() {
+        inputManager = new InputManager();
+    }
+
+    public InputManager getInputManager() {
+        return inputManager;
     }
 
     /**
