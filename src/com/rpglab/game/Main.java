@@ -1,5 +1,6 @@
 package com.rpglab.game;
 
+import com.rpglab.game.Exceptions.InvalidWeaponException;
 import com.rpglab.game.characters.Hero;
 import com.rpglab.game.characters.Monster;
 import com.rpglab.game.characters.heroes.Archer;
@@ -81,7 +82,9 @@ public class Main {
                 new Archer("Artemis", 300, 10, 30, 0.8)
             };
 
-            Hero hero = heroes[(int) (Math.random() * heroes.length)];
+            int heroChoice = menu.displayMenu("Select Your Hero", new String[] {"Mage - Wizard of Oz", "Archer - Artemis"});
+
+            Hero hero = heroes[heroChoice - 1];
 
             System.out.println();
             System.out.println(GameDisplay.BOLD + GameDisplay.YELLOW + "DUNGEON ADVENTURE BEGINS" + GameDisplay.RESET);
@@ -99,10 +102,13 @@ public class Main {
                     System.out.println(GameDisplay.RED + monster.getName() + " approaches for battle!" + GameDisplay.RESET);
                     System.out.println("────────────────────────────────────────────────────────────────────");
 
+                    // menu.getInputManager().waitForEnter("Press Enter to continue...");
+
                     while (hero.isAlive() && monster.isAlive()) {
-                        
+                        System.out.println(GameDisplay.BLUE + "┌─ TURN ─────────────────────────────────────────────────────────────┐" + GameDisplay.RESET);
                         System.out.println(GameDisplay.BOLD + "COMBAT STATUS:" + GameDisplay.RESET);
                         monster.showStatus();
+                        hero.showStatus();
 
                         
                         CombatAction heroAction = hero.chooseAction(monster);
@@ -128,6 +134,7 @@ public class Main {
                         
                         System.out.println(GameDisplay.BLUE + "└────────────────────────────────────────────────────────────────────┘" + GameDisplay.RESET);
                         System.out.println();
+                        // menu.getInputManager().waitForEnter("Press Enter to continue...");
                     }
 
                     System.out.println();
@@ -176,17 +183,15 @@ public class Main {
                                 Weapon loot = (Weapon) monster.dropLoot();
                                 System.out.println(GameDisplay.PURPLE + "Lucky find! " + hero.getName() + " found " + loot.getName() + " from " + monster.getName() + "!" + GameDisplay.RESET);
 
-                                // try {
+                                try {
                                     if (hero.getWeapon().getDamage() < loot.getDamage()) {
                                         hero.equipWeapon(loot); 
                                     } else {
                                         System.out.println(GameDisplay.YELLOW + loot.getName() + " is not better than current weapon." + GameDisplay.RESET);
                                     }
-                                // } catch (InvalidWeaponException e) {
-                                //     System.out.println(GameDisplay.RED + "[Error] " + e.getMessage() + GameDisplay.RESET);
-                                // } catch (NotEnoughResourceException e) {
-                                //     System.out.println(GameDisplay.RED + "[Error] " + e.getMessage() + GameDisplay.RESET);
-                                // }
+                                } catch (InvalidWeaponException e) {
+                                    System.out.println(GameDisplay.RED + "[Error] " + e.getMessage() + GameDisplay.RESET);
+                                }
                             } else {
                                 System.out.println("Bad luck! You didn't find any loot.");
                             }
