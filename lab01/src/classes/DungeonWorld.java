@@ -2,6 +2,7 @@ package classes;
 
 import interfaces.World;
 import enums.SceneType;
+import enums.Dificult;
 import classes.scenes.CombatScene;
 import classes.Weapons.Bow;
 import classes.Weapons.ExtremeSuperBow;
@@ -21,26 +22,59 @@ public class DungeonWorld implements World {
 
     CombatScene[] scenes;
 
-    public DungeonWorld() {
+    public DungeonWorld(Dificult dificult) {
         generateScenes(3);
+
+        double lifeMult = dificult.getLifeMult();
+        double damageMult = dificult.getDamageMult();
         
         Weapon[] easyLoot = new Weapon[] { new Bow(), new Staff() };
         Weapon[] mediumLoot = new Weapon[] { new SuperBow(), new WillowStaff() };
         Weapon[] hardLoot = new Weapon[] { new ExtremeSuperBow(), new MoonStaff(), new Sword() };
 
-        scenes[0] = new CombatScene(SceneType.DUNGEON_ENTRANCE, new Monster[] { 
-            new Slime("Slime", 50, 5, 40, easyLoot),
-            new Skeleton("Skeleton", 70, 10, 80, easyLoot),
-            new Lizardman("Lizardman", 90, 15, 100, mediumLoot)
+          scenes[0] = new CombatScene(SceneType.DUNGEON_ENTRANCE, new Monster[] {
+            new Slime("Slime", 
+                newValue(50, lifeMult), // vida ajustada
+                newValue(5, damageMult), // dano ajustado
+                40, 
+                easyLoot
+            ),
+            new Skeleton("Skeleton", 
+                newValue(70, lifeMult),
+                newValue(10, damageMult),
+                80,
+                easyLoot
+            ),
+            new Lizardman("Lizardman",
+                newValue(90, lifeMult),
+                newValue(15, damageMult),
+                100,
+                mediumLoot
+            )
         });
 
-        scenes[1] = new CombatScene(SceneType.DARK_HALLWAY, new Monster[] { 
-            new Dragon("Dragon", 150, 35, 150, hardLoot),
-            new Cockatrice("Cockatrice", 80, 30, 150, hardLoot)
+        scenes[1] = new CombatScene(SceneType.DARK_HALLWAY, new Monster[] {
+            new Dragon("Dragon",
+                newValue(150, lifeMult),
+                newValue(35, damageMult),
+                150,
+                hardLoot
+            ),
+            new Cockatrice("Cockatrice",
+                newValue(80, lifeMult),
+                newValue(30, damageMult),
+                150,
+                hardLoot
+            )
         });
 
-        scenes[2] = new CombatScene(SceneType.MONSTER_LAIR, new Monster[] { 
-            new DemonKing("Demon King", 200, 50, 200, hardLoot)
+        scenes[2] = new CombatScene(SceneType.MONSTER_LAIR, new Monster[] {
+            new DemonKing("Demon King",
+                newValue(200, lifeMult),
+                newValue(50, damageMult),
+                200,
+                hardLoot
+            )
         });
     }
 
@@ -52,4 +86,8 @@ public class DungeonWorld implements World {
     public CombatScene[] getScenes() {
         return scenes;
     }
+
+    private int newValue(int baseValue, double multiplier) {
+    return (int) (baseValue * multiplier);
+}   
 }
