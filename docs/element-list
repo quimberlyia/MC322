@@ -1,0 +1,12 @@
+com.rpglab.game
+com.rpglab.game.battle.moves
+com.rpglab.game.characters
+com.rpglab.game.characters.heroes
+com.rpglab.game.characters.monsters
+com.rpglab.game.enums
+com.rpglab.game.Exceptions
+com.rpglab.game.game
+com.rpglab.game.interfaces
+com.rpglab.game.items
+com.rpglab.game.items.weapons
+com.rpglab.game.utils
