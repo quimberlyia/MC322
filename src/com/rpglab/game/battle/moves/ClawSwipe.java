@@ -25,7 +25,6 @@ public class ClawSwipe implements CombatAction {
      * @param user   the combatant performing the claw swipe attack
      * @param target the combatant receiving the slashing damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 18; // Claw swipe damage
         target.takeDamage(damage);

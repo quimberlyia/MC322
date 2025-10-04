@@ -27,7 +27,6 @@ public class PetrifyingGaze implements CombatAction {
      * @param user   the combatant using petrifying gaze (typically cockatrices)
      * @param target the combatant receiving the petrification damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 30; // Petrifying damage
         target.takeDamage(damage);

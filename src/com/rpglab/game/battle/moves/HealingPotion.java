@@ -26,7 +26,6 @@ public class HealingPotion implements CombatAction {
      * @param user The combatant who drinks the healing potion
      * @param target The target parameter (ignored for this self-healing action)
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int healAmount = 30;
         user.heal(healAmount);

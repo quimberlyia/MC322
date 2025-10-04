@@ -44,7 +44,6 @@ public class Monster extends Character implements Lootable  {
      * 
      * @param amount The healing amount (ignored for monsters)
      */
-    @Override
     public void heal(int amount) {
         return ;
     }
@@ -57,7 +56,6 @@ public class Monster extends Character implements Lootable  {
      * @param target The target combatant for the action
      * @return A randomly selected CombatAction, or null if no actions are available
      */
-    @Override
     public CombatAction chooseAction(Combatente target) {
         if (actions.isEmpty()) return null;
         Random rand = new Random();
@@ -114,7 +112,6 @@ public class Monster extends Character implements Lootable  {
      * 
      * @return A randomly selected Item from the loot array
      */
-    @Override
     public Item dropLoot() {
         int index = (int) (Math.random() * loot.length);
         return (Item) loot[index];
@@ -143,7 +140,6 @@ public class Monster extends Character implements Lootable  {
      * Provides a distinct visual presentation for monsters using red coloring
      * and showing the experience points they're worth when defeated.
      */
-    @Override
     public void showStatus() {
         String healthBar = "[" + getHealthPoints() + " HP]";
         String strengthBar = "[" + getStrength() + " Strength Points]";

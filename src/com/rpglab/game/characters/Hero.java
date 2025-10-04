@@ -45,7 +45,6 @@ public abstract class Hero extends Character {
      * @param target The target combatant for the action
      * @return A CombatAction representing the chosen action
      */
-    @Override
     public abstract CombatAction chooseAction(Combatente target);
 
     /**
@@ -162,7 +161,6 @@ public abstract class Hero extends Character {
      * Provides an enhanced status display compared to the base Character class,
      * showing hero-specific information like level, experience progress, and equipped weapon.
      */
-    @Override
     public void showStatus() {
         String healthBar = "[" + getHealthPoints() + " HP]";
         String strengthBar = "[" + getStrength() + " Strength Points]";

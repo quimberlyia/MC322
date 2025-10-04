@@ -26,7 +26,6 @@ public class Roar implements CombatAction {
      * @param user   the combatant performing the roar (typically large predators)
      * @param target the combatant receiving the intimidation damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 25; // Intimidating roar damage
         target.takeDamage(damage);

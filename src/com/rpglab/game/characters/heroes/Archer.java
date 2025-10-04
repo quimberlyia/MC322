@@ -83,7 +83,6 @@ public class Archer extends Hero {
      * @param target The target combatant for the action
      * @return A randomly selected CombatAction, or null if no actions are available
      */
-    @Override
     public CombatAction chooseAction(Combatente target) {
         if (action.isEmpty()) return null;
         int idx = (int) (Math.random() * action.size());

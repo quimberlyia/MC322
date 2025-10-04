@@ -27,7 +27,6 @@ public class PoisonousBite implements CombatAction {
      * @param user   the combatant performing the poisonous bite
      * @param target the combatant receiving the toxic damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 22; // Poisonous bite damage
         target.takeDamage(damage);

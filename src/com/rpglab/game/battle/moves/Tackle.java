@@ -26,7 +26,6 @@ public class Tackle implements CombatAction {
      * @param user   the combatant performing the tackle attack
      * @param target the combatant receiving the blunt force damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 10; // Basic tackle damage
         target.takeDamage(damage);

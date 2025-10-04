@@ -27,7 +27,6 @@ public class Swallow implements CombatAction {
      * @param user   the combatant performing the swallow attack
      * @param target the combatant being engulfed and damaged
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = user.getHealthPoints() / 10; // Damage based on user's health
         target.takeDamage(damage);

@@ -123,7 +123,6 @@ public class DungeonWorld implements World {
      * 
      * @param scenes_number the number of scenes to create in this world
      */
-    @Override
     public void generateScenes(int scenes_number) {
         this.scenes = new CombatScene[scenes_number];
     }

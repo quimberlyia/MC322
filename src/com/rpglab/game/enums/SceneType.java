@@ -22,7 +22,6 @@ public enum SceneType {
          * 
          * @param hero The hero entering the castle
          */
-        @Override
         public void applyEffect(Hero hero) {
             System.out.println("You feel a chill as you enter the castle.");
         }
@@ -39,7 +38,6 @@ public enum SceneType {
          * 
          * @param hero The hero traversing the hallway
          */
-        @Override
         public void applyEffect(Hero hero) {
             System.out.println("You hear eerie sounds echoing through the hallway.");
             hero.takeDamage(10);
@@ -59,7 +57,6 @@ public enum SceneType {
          * 
          * @param hero The hero entering the final battle
          */
-        @Override
         public void applyEffect(Hero hero) {
             // Example effect: Final battle with the Demon King
             System.out.println("The Demon King appears! Prepare for the final battle!");

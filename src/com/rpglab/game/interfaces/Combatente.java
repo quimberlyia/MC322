@@ -1,4 +1,5 @@
 package com.rpglab.game.interfaces;
+import com.rpglab.game.items.Weapon;
 
 /**
  * Represents any entity that can participate in combat within the Dungeon Adventure RPG.
@@ -65,4 +66,5 @@ public interface Combatente {
      * @return The strength value as an integer
      */
     int getStrength();
+    Weapon getWeapon();
 }
