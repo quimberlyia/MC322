@@ -26,6 +26,14 @@ public abstract class Weapon implements Item {
     private String name;
 
     /**
+     * Category of the weapon used to identify compatible hero classes.
+     * Default implementations return OTHER; concrete weapon base classes
+     * (e.g., Bow, Staff) should override getCategory() so all their
+     * subclasses inherit the correct category.
+     */
+    public enum WeaponCategory { BOW, STAFF, SWORD, OTHER }
+
+    /**
      * Constructs a new Weapon with the specified attributes.
      * 
      * @param damage The damage value this weapon provides
@@ -66,6 +74,17 @@ public abstract class Weapon implements Item {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Returns the category of this weapon. By default returns OTHER.
+     * Subclasses like Bow and Staff override this so checks can be
+     * performed against weapon categories instead of concrete classes.
+     *
+     * @return WeaponCategory for this weapon
+     */
+    public WeaponCategory getCategory() {
+        return WeaponCategory.OTHER;
     }
 }
 

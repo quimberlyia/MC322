@@ -1,5 +1,6 @@
 package com.rpglab.game.interfaces;
 import com.rpglab.game.items.Weapon;
+import com.rpglab.game.items.Weapon.WeaponCategory;
 
 /**
  * Represents any entity that can participate in combat within the Dungeon Adventure RPG.
@@ -67,4 +68,15 @@ public interface Combatente {
      */
     int getStrength();
     Weapon getWeapon();
+
+    /**
+     * Returns the weapon categories that this combatant is allowed to equip.
+     * By default, combatants can equip any weapon category. Specific classes
+     * (e.g., Mage, Archer) should override this to restrict allowed categories.
+     *
+     * @return an array of allowed Weapon.WeaponCategory values
+     */
+    default WeaponCategory[] allowedWeaponCategories() {
+        return WeaponCategory.values();
+    }
 }

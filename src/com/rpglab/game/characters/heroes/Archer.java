@@ -7,6 +7,7 @@ import com.rpglab.game.characters.Hero;
 import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.interfaces.Combatente;
 import com.rpglab.game.items.weapons.Bow;
+import com.rpglab.game.items.Weapon.WeaponCategory; 
 
 /**
  * Represents an Archer hero class in the Dungeon Adventure RPG.
@@ -45,6 +46,11 @@ public class Archer extends Hero {
         // Add combat actions
         addAction(new PreciseShot());
         addAction(new HealingPotion());
+    }
+
+    @Override
+    public WeaponCategory[] allowedWeaponCategories() {
+        return new WeaponCategory[] { WeaponCategory.BOW };
     }
 
     /**

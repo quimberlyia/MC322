@@ -23,4 +23,9 @@ public class Bow extends Weapon {
     public Bow() {
         super(5, 1, "Bow");
     }
+
+    @Override
+    public WeaponCategory getCategory() {
+        return WeaponCategory.BOW;
+    }
 }

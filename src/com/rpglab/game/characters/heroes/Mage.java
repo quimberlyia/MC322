@@ -7,6 +7,7 @@ import com.rpglab.game.characters.Hero;
 import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.interfaces.Combatente;
 import com.rpglab.game.items.weapons.Staff;
+import com.rpglab.game.items.Weapon.WeaponCategory; 
 
 /**
  * Represents a Mage hero class in the Dungeon Adventure RPG.
@@ -45,6 +46,11 @@ public class Mage extends Hero {
         // Add combat actions
         addAction(new PowerfulSpell());
         addAction(new HealingPotion());
+    }
+
+    @Override
+    public WeaponCategory[] allowedWeaponCategories() {
+        return new WeaponCategory[] { WeaponCategory.STAFF };
     }
 
     /**

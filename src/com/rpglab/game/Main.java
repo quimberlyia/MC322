@@ -184,13 +184,9 @@ public class Main {
                                 System.out.println(GameDisplay.PURPLE + "Lucky find! " + hero.getName() + " found " + loot.getName() + " from " + monster.getName() + "!" + GameDisplay.RESET);
 
                                 try {
-                                    if (hero.getWeapon().getDamage() < loot.getDamage()) {
-                                        hero.equipWeapon(loot); 
-                                    } else {
-                                        System.out.println(GameDisplay.YELLOW + loot.getName() + " is not better than current weapon." + GameDisplay.RESET);
-                                    }
+                                    hero.equipWeapon(loot);
                                 } catch (InvalidWeaponException e) {
-                                    System.out.println(GameDisplay.RED + "[Error] " + e.getMessage() + GameDisplay.RESET);
+                                    System.out.println(GameDisplay.RED + e.getMessage() + GameDisplay.RESET);
                                 }
                             } else {
                                 System.out.println("Bad luck! You didn't find any loot.");

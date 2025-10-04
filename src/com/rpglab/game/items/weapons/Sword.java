@@ -6,4 +6,9 @@ public class Sword extends Weapon {
     public Sword() {
         super(15, 2, "Sword");
     };
+
+    @Override
+    public WeaponCategory getCategory() {
+        return WeaponCategory.SWORD;
+    }
 }

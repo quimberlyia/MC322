@@ -6,4 +6,9 @@ public class SuperBow extends Weapon {
     public SuperBow() {
         super(20, 2, "Super Bow");
     };
+
+    @Override
+    public WeaponCategory getCategory() {
+        return WeaponCategory.BOW;
+    }
 }

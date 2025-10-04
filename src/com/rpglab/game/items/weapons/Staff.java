@@ -24,4 +24,9 @@ public class Staff extends Weapon {
     public Staff() {
         super(10, 1, "Staff");
     }
+
+    @Override
+    public WeaponCategory getCategory() {
+        return WeaponCategory.STAFF;
+    }
 }

@@ -6,6 +6,7 @@ import com.rpglab.game.Exceptions.InvalidWeaponException;
 import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.interfaces.Combatente;
 import com.rpglab.game.items.Weapon;
+import com.rpglab.game.items.Weapon.WeaponCategory;
 import com.rpglab.game.utils.GameDisplay;
 
 import java.util.ArrayList;
@@ -177,17 +178,43 @@ public abstract class Hero extends Character {
 
     /**
      * Attempts to equip a weapon to the hero.
-     * Checks level requirements before allowing the weapon to be equipped.
+     * Checks weapon category compatibility, level requirements, and whether
+     * the new weapon is an upgrade over the current weapon.
      * Displays appropriate messages for successful or failed equipment attempts.
      * 
      * @param weapon The Weapon to attempt to equip
-     * @throws InvalidWeaponException if the hero's level is too low to equip the weapon
+     * @throws InvalidWeaponException if the weapon type is not allowed, level is too low,
+     *         or the weapon is not better than the current weapon
      */
     public void equipWeapon(Weapon weapon) throws InvalidWeaponException {
+
+        // allow unequip via null
+        if (weapon == null) {
+            setWeapon(null);
+            System.out.println(GameDisplay.CYAN + getName() + " unequipped their weapon." + GameDisplay.RESET);
+            return;
+        }
+
+        // check allowed categories exposed by Combatente (default: all allowed)
+        WeaponCategory[] allowed = this.allowedWeaponCategories();
+        boolean ok = false;
+        for (WeaponCategory c : allowed) {
+            if (c == weapon.getCategory()) { ok = true; break; }
+        }
+        if (!ok) {
+            System.out.println(GameDisplay.YELLOW + getName() + " cannot equip " + weapon.getName() + " (weapon type not allowed)" + GameDisplay.RESET);
+            throw new InvalidWeaponException("Invalid weapon for " + getClass().getSimpleName() + ": weapon type not allowed.");
+        }
 
         if (weapon.getMinLevel() > this.level) {
             System.out.println(GameDisplay.YELLOW + getName() + " cannot equip " + weapon.getName() + " (requires level " + weapon.getMinLevel() + ")" + GameDisplay.RESET);
             throw new InvalidWeaponException("Cannot equip weapon: level too low.");
+        }
+
+        // check if new weapon is better than current weapon
+        if (getWeapon() != null && weapon.getDamage() <= getWeapon().getDamage()) {
+            System.out.println(GameDisplay.YELLOW + weapon.getName() + " is not better than current weapon." + GameDisplay.RESET);
+            throw new InvalidWeaponException("Cannot equip weapon: not better than current weapon.");
         }
 
         setWeapon(weapon);
