@@ -26,7 +26,6 @@ public class FireBreath implements CombatAction {
      * @param user   the combatant breathing fire (typically dragons)
      * @param target the combatant receiving the fire damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 35; // Powerful fire breath damage
         target.takeDamage(damage);

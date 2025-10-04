@@ -26,7 +26,6 @@ public class DarkSpell implements CombatAction {
      * @param user   the combatant casting the dark spell (typically powerful magic users)
      * @param target the combatant receiving the dark magical damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 40; // Powerful dark magic damage
         target.takeDamage(damage);

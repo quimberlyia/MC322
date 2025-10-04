@@ -25,7 +25,6 @@ public class AcidSpit implements CombatAction {
      * @param user   the combatant performing the acid spit attack
      * @param target the combatant receiving the acid damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 15; // Fixed acid damage
         target.takeDamage(damage);

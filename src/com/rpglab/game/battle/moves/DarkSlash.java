@@ -26,7 +26,6 @@ public class DarkSlash implements CombatAction {
      * @param user   the combatant performing the dark slash attack (typically boss monsters)
      * @param target the combatant receiving the dark-enchanted damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 45; // Powerful dark sword attack
         target.takeDamage(damage);

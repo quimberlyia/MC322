@@ -26,7 +26,6 @@ public class TailSwipe implements CombatAction {
      * @param user   the combatant performing the tail swipe (typically reptilian creatures)
      * @param target the combatant receiving the bludgeoning damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 25; // Tail swipe damage
         target.takeDamage(damage);

@@ -27,7 +27,6 @@ public class RustySword implements CombatAction {
      * @param user   the combatant wielding the rusty sword (typically undead)
      * @param target the combatant receiving the slashing damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 12; // Rusty sword damage
         target.takeDamage(damage);

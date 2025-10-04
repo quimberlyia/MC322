@@ -26,7 +26,6 @@ public class TailWhip implements CombatAction {
      * @param user   the combatant performing the tail whip (typically agile reptiles)
      * @param target the combatant receiving the lashing damage
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = 20; // Tail whip damage
         target.takeDamage(damage);

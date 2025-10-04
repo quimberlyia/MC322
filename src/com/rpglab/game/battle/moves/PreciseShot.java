@@ -27,7 +27,6 @@ public class PreciseShot implements CombatAction {
      * @param user The combatant performing the precise shot
      * @param target The combatant receiving the attack
      */
-    @Override
     public void execute(Combatente user, Combatente target) {
         int damage = (user.getStrength() * 3) / 2;
         target.takeDamage(damage);

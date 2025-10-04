@@ -61,7 +61,6 @@ public class CombatScene implements Scene {
      * 
      * @return the SceneType of this combat scene
      */
-    @Override
     public SceneType getSceneType() {
         return type;
     }
@@ -73,7 +72,6 @@ public class CombatScene implements Scene {
      * 
      * @param hero the hero character entering this combat scene
      */
-    @Override
     public void Start(Hero hero) {
         System.out.println("The hero enters the " + getSceneType().getDescription() + "!");
         getSceneType().applyEffect(hero);
@@ -86,7 +84,6 @@ public class CombatScene implements Scene {
      * 
      * @return true if all monsters are defeated, false otherwise
      */
-    @Override
     public boolean isCompleted() {
         for (Combatente monster : monsters) {
             if (monster.isAlive()) {

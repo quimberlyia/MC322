@@ -27,7 +27,6 @@ public class PowerfulSpell implements CombatAction {
      * @param hero The combatant casting the powerful spell
      * @param monster The combatant receiving the magical attack
      */
-    @Override
     public void execute(Combatente hero, Combatente monster) {
         int damage = (hero.getStrength() * 3) / 2;
         monster.takeDamage(damage);

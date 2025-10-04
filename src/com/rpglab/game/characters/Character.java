@@ -121,7 +121,6 @@ public abstract class Character implements Combatente {
      * 
      * @param damage The amount of damage to inflict (must be non-negative)
      */
-    @Override
     public void takeDamage(int damage) {
         changeHealth(-damage);
     }
@@ -133,7 +132,6 @@ public abstract class Character implements Combatente {
      * 
      * @param amount The amount of health to restore (must be non-negative)
      */
-    @Override
     public void heal(int amount) {
         changeHealth(amount);
     }
@@ -144,7 +142,6 @@ public abstract class Character implements Combatente {
      * 
      * @return true if the character is alive, false if dead
      */
-    @Override
     public boolean isAlive() {
         return healthPoints > 0;
     }
