@@ -17,8 +17,8 @@ package com.rpglab.game.Exceptions;
  * @version 1.0
  * @since 1.0
  */
-public class NotEnoughResourceException extends Exception {
-    
+public class NotEnoughResourceException extends RuntimeException {
+
     /**
      * Constructs a new NotEnoughResourceException with the specified detail message.
      * The message should describe the specific resource shortage and the action
