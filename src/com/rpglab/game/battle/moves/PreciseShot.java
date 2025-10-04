@@ -27,9 +27,9 @@ public class PreciseShot implements CombatAction {
      * @param user The combatant performing the precise shot
      * @param target The combatant receiving the attack
      */
-    public void execute(Combatente user, Combatente target) {
-        int damage = (user.getStrength() * 3) / 2;
+    public void execute(Combatente hero, Combatente target) {
+        int damage = (hero.getStrength() * 3 + hero.getWeapon().getDamage()) / 2;
         target.takeDamage(damage);
-        System.out.println("The hero " + user.getName() + " used a precise shot on " + target.getName() + " for " + damage + " damage!");
+        System.out.println("The hero " + hero.getName() + " used a precise shot with " + hero.getWeapon().getName() + " on " + target.getName() + " for " + damage + " damage!");
     }
 }
