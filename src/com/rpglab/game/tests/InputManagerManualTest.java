@@ -1,7 +1,8 @@
-package com.rpglab.game.testes;
+package com.rpglab.game.tests;
 
 import com.rpglab.game.utils.InputManager;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayInputStream;
@@ -16,15 +17,22 @@ public class InputManagerManualTest {
     private ByteArrayInputStream testIn;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
+    @BeforeEach
+    void setup() {
+        // Preparar para cada teste
+    }
+
     @AfterEach
     void restoreStreams() {
         System.setIn(originalSystemIn);
         System.setOut(originalOut);
+        InputManager.resetScanner(); // Resetar scanner após cada teste
     }
 
     private void provideInput(String data) {
         testIn = new ByteArrayInputStream(data.getBytes());
         System.setIn(testIn);
+        InputManager.resetScanner(); // Resetar scanner para usar novo System.in
     }
 
     private String normalizeOutput(String output) {
