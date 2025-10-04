@@ -18,9 +18,6 @@ import java.util.Scanner;
  */
 public class InputManager {
 
-    /** Static Scanner instance for reading console input throughout the game */
-    private static final Scanner scanner = new Scanner(System.in);
-
     /**
      * Reads a whole number from user input within a specified range.
      * Continues prompting the user until a valid integer within the range is entered.
@@ -33,25 +30,26 @@ public class InputManager {
      * @throws RuntimeException if input is not available (system error)
      */
     public static int readWholeNumber(String message, int min, int max) {
-
-        while (true) {
-            System.out.print(message + " (" + min + " - " + max + ")  > ");
-            try {
-                String input = scanner.nextLine().trim();
-                if (input.isEmpty()) {
-                    System.out.println("Empty input. Please enter a number.");
-                    continue;
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                System.out.print(message + " (" + min + " - " + max + ")  > ");
+                try {
+                    String input = scanner.nextLine().trim();
+                    if (input.isEmpty()) {
+                        System.out.println("Empty input. Please enter a number.");
+                        continue;
+                    }
+                    int value = Integer.parseInt(input);
+                    if (value < min || value > max) {
+                        System.out.println("Value out of allowed range.");
+                        continue;
+                    }
+                    return value;
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid value. Please enter an integer number.");
+                } catch (NoSuchElementException e) {
+                    throw new RuntimeException("Input not available.", e);
                 }
-                int value = Integer.parseInt(input);
-                if (value < min || value > max) {
-                    System.out.println("Value out of allowed range.");
-                    continue;
-                }
-                return value;
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid value. Please enter an integer number.");
-            } catch (NoSuchElementException e) {
-                throw new RuntimeException("Input not available.", e);
             }
         }    
     }
@@ -65,8 +63,10 @@ public class InputManager {
      */
     public static String readString(String message) {
         System.out.print(message);
-        return scanner.nextLine().trim(); // nextLine goes until enter and trim removes spaces
-    } 
+        try (Scanner scanner = new Scanner(System.in)) {
+            return scanner.nextLine().trim(); // nextLine goes until enter and trim removes spaces
+        }
+    }
 
     /**
      * Reads a yes/no response from user input.
@@ -77,12 +77,14 @@ public class InputManager {
      * @return true if the user entered 'y', false if the user entered 'n'
      */
     public static boolean readYesNo(String message) {
-        while (true) {
-            System.out.print(message + " (y/n): ");
-            String input = scanner.nextLine().trim().toLowerCase(); // toLowerCase to accept uppercase and lowercase
-            if (input.equals("y")) return true;
-            if (input.equals("n")) return false;
-            System.out.println("Invalid input. Please enter only 'y' or 'n'.");
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                System.out.print(message + " (y/n): ");
+                String input = scanner.nextLine().trim().toLowerCase(); // toLowerCase to accept uppercase and lowercase
+                if (input.equals("y")) return true;
+                if (input.equals("n")) return false;
+                System.out.println("Invalid input. Please enter only 'y' or 'n'.");
+            }
         }
     }
     
@@ -95,7 +97,9 @@ public class InputManager {
      */
     public static void waitForEnter(String message) {
         System.out.print(message);
-        scanner.nextLine(); // pause until Enter
+        try (Scanner scanner = new Scanner(System.in)) {
+            scanner.nextLine(); // pause until Enter
+        }
     }
 
     /**
@@ -104,6 +108,7 @@ public class InputManager {
      * release system resources.
      */
     public static void close() {
+        Scanner scanner = new Scanner(System.in);
         scanner.close();
     }
 }
