@@ -6,12 +6,12 @@ import com.rpglab.game.interfaces.Combatente;
 /**
  * A precise ranged attack combat action primarily used by Archer heroes.
  * This attack delivers enhanced damage by focusing on accuracy and precision,
- * making it more effective than standard attacks.
+ * combining the archer's skill with their weapon's power for maximum effect.
  * 
- * <p>The precise shot calculates damage based on the user's strength with
- * a 1.5x multiplier, representing the focused nature of the attack.
- * This makes it particularly effective for archer characters who specialize
- * in ranged combat.</p>
+ * <p>The precise shot calculates damage using the formula:
+ * (user's strength × 3 + weapon damage) ÷ 2.
+ * This formula represents the focused aim and technique that archers use
+ * to maximize their weapon's effectiveness in ranged combat.</p>
  * 
  * @author quimberlyia and gaamelu
  * @version 1.0
@@ -21,10 +21,11 @@ public class PreciseShot implements CombatAction {
     
     /**
      * Executes a precise shot attack against the target.
-     * Calculates damage as 1.5 times the user's strength value,
-     * representing the enhanced effectiveness of a well-aimed attack.
+     * Calculates damage using the formula: (strength × 3 + weapon damage) ÷ 2.
+     * This combines the hero's physical strength and aim with their equipped
+     * bow's power to deliver a devastating ranged attack.
      * 
-     * @param user The combatant performing the precise shot
+     * @param hero The combatant performing the precise shot (typically an Archer)
      * @param target The combatant receiving the attack
      */
     public void execute(Combatente hero, Combatente target) {
