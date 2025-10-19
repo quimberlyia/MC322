@@ -2,7 +2,7 @@ package com.rpglab.game.characters.monsters;
 
 import com.rpglab.game.characters.Monster;
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.items.Weapon;
+import com.rpglab.game.enums.WeaponType;
 
 /**
  * Represents a Dragon monster in the Dungeon Adventure RPG.
@@ -29,10 +29,10 @@ public class Dragon extends Monster {
      * @param healthPoints The dragon's initial health points
      * @param strength The dragon's strength value
      * @param experience The experience points awarded when this dragon is defeated
-     * @param loot Array of weapons this dragon can drop as loot
+     * @param lootTable Array of weapon types this dragon can drop as loot (shared via aggregation)
      * @param moves List of shared instances of combat action
      */
-    public Dragon(int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
-        super("Dragon", healthPoints, strength, experience, loot, moves);
+    public Dragon(int healthPoints, int strength, int experience, WeaponType[] lootTable, CombatAction[] moves) {
+        super("Dragon", healthPoints, strength, experience, lootTable, moves);
     }
 }

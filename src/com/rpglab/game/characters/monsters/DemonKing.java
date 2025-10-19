@@ -2,7 +2,7 @@ package com.rpglab.game.characters.monsters;
 
 import com.rpglab.game.characters.Monster;
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.items.Weapon;
+import com.rpglab.game.enums.WeaponType;
 
 /**
  * Represents the Demon King, the final boss of the Dungeon Adventure RPG.
@@ -33,10 +33,10 @@ public class DemonKing extends Monster {
      * @param healthPoints The Demon King's initial health points
      * @param strength The Demon King's strength value
      * @param experience The experience points awarded when the Demon King is defeated
-     * @param loot Array of weapons the Demon King can drop as loot
+     * @param lootTable Array of weapon types the Demon King can drop as loot (shared via aggregation)
      * @param moves List of shared instances of combat action
      */
-    public DemonKing(int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
-        super("Demon King", healthPoints, strength, experience, loot, moves);
+    public DemonKing(int healthPoints, int strength, int experience, WeaponType[] lootTable, CombatAction[] moves) {
+        super("Demon King", healthPoints, strength, experience, lootTable, moves);
     }
 }

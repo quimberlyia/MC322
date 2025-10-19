@@ -12,14 +12,8 @@ import com.rpglab.game.enums.SceneType;
 import com.rpglab.game.enums.Difficulty;
 import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.interfaces.World;
-import com.rpglab.game.items.Weapon;
-import com.rpglab.game.items.weapons.Bow;
-import com.rpglab.game.items.weapons.ExtremeSuperBow;
-import com.rpglab.game.items.weapons.MoonStaff;
-import com.rpglab.game.items.weapons.Staff;
-import com.rpglab.game.items.weapons.SuperBow;
-import com.rpglab.game.items.weapons.Sword;
-import com.rpglab.game.items.weapons.WillowStaff;
+import com.rpglab.game.enums.WeaponType;
+import static com.rpglab.game.enums.WeaponType.*;
 
 /**
  * Represents the main dungeon world containing all combat scenes and encounters.
@@ -73,9 +67,12 @@ public class DungeonWorld implements World {
         double lifeMult = Difficulty.getLifeMult();
         double damageMult = Difficulty.getDamageMult();
         
-        Weapon[] easyLoot = new Weapon[] { new Bow(), new Staff() };
-        Weapon[] mediumLoot = new Weapon[] { new SuperBow(), new WillowStaff() };
-        Weapon[] hardLoot = new Weapon[] { new ExtremeSuperBow(), new MoonStaff(), new Sword() };
+        // Create shared loot tables for each difficulty tier
+        // These arrays are shared (aggregation) among monsters in the same area
+        // Weapons are only instantiated when actually dropped via WeaponType.create()
+        WeaponType[] easyLoot = new WeaponType[] { BOW, STAFF };
+        WeaponType[] mediumLoot = new WeaponType[] { SUPER_BOW, WILLOW_STAFF };
+        WeaponType[] hardLoot = new WeaponType[] { EXTREME_SUPER_BOW, MOON_STAFF, SWORD };
 
         // Create shared combat action instances for reuse across monsters
         // These actions are stateless and can be safely shared

@@ -7,7 +7,7 @@ import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.interfaces.Combatant;
 import com.rpglab.game.interfaces.Item;
 import com.rpglab.game.interfaces.Lootable;
-import com.rpglab.game.items.Weapon;
+import com.rpglab.game.enums.WeaponType;
 import com.rpglab.game.utils.GameDisplay;
 
 import java.util.ArrayList;
@@ -32,8 +32,12 @@ public class Monster extends Character implements Lootable  {
     /** The experience points awarded to heroes when this monster is defeated */
     private int experience;
     
-    /** Array of weapons that this monster can drop as loot */
-    private Weapon[] loot;
+    /** 
+     * Array of weapon types that this monster can drop as loot.
+     * Uses shared aggregation - multiple monsters can reference the same loot table array.
+     * Weapons are only instantiated when actually dropped.
+     */
+    private WeaponType[] lootTable;
     
     /** List of combat actions available to this monster */
     protected List<CombatAction> actions = new ArrayList<>();
@@ -64,18 +68,23 @@ public class Monster extends Character implements Lootable  {
     }
 
     /**
-     * Constructs a new Monster with the specified attributes and loot.
+     * Constructs a new Monster with the specified attributes and loot table.
+     * 
+     * <p>This constructor uses shared aggregation for loot tables. The lootTable array
+     * can be shared between multiple monster instances, and weapons are only instantiated
+     * when actually dropped.</p>
      * 
      * @param name The monster's name
      * @param healthPoints The monster's health points
      * @param strength The monster's strength value
      * @param experience The experience points awarded when this monster is defeated
-     * @param loot Array of weapons this monster can drop as loot
+     * @param lootTable Array of weapon types this monster can drop as loot (shared via aggregation)
+     * @param moves Array of combat actions this monster can use (shared via aggregation)
      */
-    public Monster(String name, int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
+    public Monster(String name, int healthPoints, int strength, int experience, WeaponType[] lootTable, CombatAction[] moves) {
         super(name, healthPoints, strength);
         this.experience = experience;
-        this.loot = loot;
+        this.lootTable = lootTable;
         for (CombatAction move : moves) {
             addAction(move);
         }
@@ -91,33 +100,39 @@ public class Monster extends Character implements Lootable  {
     }
 
     /**
-     * Returns the array of weapons this monster can drop as loot.
+     * Returns the array of weapon types this monster can drop as loot.
      * 
-     * @return Array of Weapon objects representing potential loot drops
+     * @return Array of WeaponType values representing potential loot drops
      */
-    public Weapon[] getLoot() {
-        return loot;
+    public WeaponType[] getLootTable() {
+        return lootTable;
     }
 
     /**
      * Sets the loot table for this monster.
      * 
-     * @param loot Array of weapons to set as the monster's potential loot drops
+     * @param lootTable Array of weapon types to set as the monster's potential loot drops
      */
-    public void setLoot(Weapon[] loot) {
-        this.loot = loot;
+    public void setLootTable(WeaponType[] lootTable) {
+        this.lootTable = lootTable;
     }
 
     /**
-     * Randomly selects and returns an item from the monster's loot table.
+     * Randomly selects and returns a weapon from the monster's loot table.
      * Implementation of the Lootable interface that provides random loot
      * selection when the monster is defeated.
      * 
-     * @return A randomly selected Item from the loot array
+     * <p>This method instantiates a new weapon on-demand using the WeaponType
+     * factory method, ensuring weapons only exist when actually dropped.</p>
+     * 
+     * @return A newly created Weapon instance, or null if loot table is empty
      */
     public Item dropLoot() {
-        int index = (int) (Math.random() * loot.length);
-        return (Item) loot[index];
+        if (lootTable == null || lootTable.length == 0) {
+            return null;
+        }
+        int index = (int) (Math.random() * lootTable.length);
+        return lootTable[index].create();
     }
 
     /**

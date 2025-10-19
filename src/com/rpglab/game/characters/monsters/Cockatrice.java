@@ -2,7 +2,7 @@ package com.rpglab.game.characters.monsters;
 
 import com.rpglab.game.characters.Monster;
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.items.Weapon;
+import com.rpglab.game.enums.WeaponType;
 
 /**
  * Represents a Cockatrice monster in the Dungeon Adventure RPG.
@@ -30,10 +30,10 @@ public class Cockatrice extends Monster {
      * @param healthPoints The cockatrice's initial health points
      * @param strength The cockatrice's strength value
      * @param experience The experience points awarded when this cockatrice is defeated
-     * @param loot Array of weapons this cockatrice can drop as loot
+     * @param lootTable Array of weapon types this cockatrice can drop as loot (shared via aggregation)
      * @param moves List of shared instances of combat action
      */
-    public Cockatrice(int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
-        super("Cockatrice", healthPoints, strength, experience, loot, moves);
+    public Cockatrice(int healthPoints, int strength, int experience, WeaponType[] lootTable, CombatAction[] moves) {
+        super("Cockatrice", healthPoints, strength, experience, lootTable, moves);
     }
 }

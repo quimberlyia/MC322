@@ -2,7 +2,7 @@ package com.rpglab.game.characters.monsters;
 
 import com.rpglab.game.characters.Monster;
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.items.Weapon;
+import com.rpglab.game.enums.WeaponType;
 
 /**
  * Represents a Lizardman monster in the Dungeon Adventure RPG.
@@ -31,10 +31,10 @@ public class Lizardman extends Monster {
      * @param healthPoints The lizardman's initial health points
      * @param strength The lizardman's strength value
      * @param experience The experience points awarded when this lizardman is defeated
-     * @param loot Array of weapons this lizardman can drop as loot
+     * @param lootTable Array of weapon types this lizardman can drop as loot (shared via aggregation)
      * @param moves List of shared instances of combat action
      */
-    public Lizardman(int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
-        super("Lizardman", healthPoints, strength, experience, loot, moves);
+    public Lizardman(int healthPoints, int strength, int experience, WeaponType[] lootTable, CombatAction[] moves) {
+        super("Lizardman", healthPoints, strength, experience, lootTable, moves);
     }
 }

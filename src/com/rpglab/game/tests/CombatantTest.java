@@ -5,7 +5,7 @@ import com.rpglab.game.characters.Monster;
 import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.interfaces.Combatant;
 import com.rpglab.game.interfaces.Lootable;
-import com.rpglab.game.items.Weapon;
+import com.rpglab.game.enums.WeaponType;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,9 +30,9 @@ public class CombatantTest {
 
     @Test
     void testMonsterImplementsCombatant() {
-        Weapon[] loot = new Weapon[0];
+        WeaponType[] lootTable = new WeaponType[0];
         CombatAction[] moves = new CombatAction[0];
-        Monster monster = new Monster("Monstro", 80, 15, 50, loot, moves);
+        Monster monster = new Monster("Monstro", 80, 15, 50, lootTable, moves);
         assertTrue(monster instanceof Combatant, "Monstro deve implementar a interface Combatant");
     }
 
@@ -50,9 +50,9 @@ public class CombatantTest {
                 return null; // Implementação de teste
             }
         };
-        Weapon[] loot = new Weapon[0];
+        WeaponType[] lootTable = new WeaponType[0];
         CombatAction[] monsterMoves = new CombatAction[0];
-        Monster monster = new Monster("Monstro", 80, 15, 50, loot, monsterMoves);
+        Monster monster = new Monster("Monstro", 80, 15, 50, lootTable, monsterMoves);
 
         // Herói ataca o monstro
         monster.takeDamage(hero.getStrength());
@@ -65,9 +65,9 @@ public class CombatantTest {
 
     @Test
     void testMonsterReceivesDamageAndAttacks() {
-        Weapon[] loot = new Weapon[0];
+        WeaponType[] lootTable = new WeaponType[0];
         CombatAction[] monsterMoves = new CombatAction[0];
-        Monster monster = new Monster("Monstro", 80, 15, 50, loot, monsterMoves);
+        Monster monster = new Monster("Monstro", 80, 15, 50, lootTable, monsterMoves);
         CombatAction[] heroMoves = new CombatAction[0];
         Hero hero = new Hero("Herói", 100, 20, 0.5, heroMoves) {
             @Override
@@ -92,9 +92,9 @@ public class CombatantTest {
 
     @Test
     void testMonsterIsLootable() {
-        Weapon[] loot = new Weapon[0];
+        WeaponType[] lootTable = new WeaponType[0];
         CombatAction[] moves = new CombatAction[0];
-        Monster monster = new Monster("Monstro", 80, 15, 50, loot, moves);
+        Monster monster = new Monster("Monstro", 80, 15, 50, lootTable, moves);
         assertTrue(monster instanceof Lootable, "Monstro deve implementar a interface Lootable");
     }
 }

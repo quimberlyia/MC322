@@ -2,7 +2,7 @@ package com.rpglab.game.characters.monsters;
 
 import com.rpglab.game.characters.Monster;
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.items.Weapon;
+import com.rpglab.game.enums.WeaponType;
 
 /**
  * Represents a Slime monster in the Dungeon Adventure RPG.
@@ -29,10 +29,10 @@ public class Slime extends Monster {
      * @param healthPoints The slime's initial health points
      * @param strength The slime's strength value
      * @param experience The experience points awarded when this slime is defeated
-     * @param loot Array of weapons this slime can drop as loot
+     * @param lootTable Array of weapon types this slime can drop as loot (shared via aggregation)
      * @param moves List of shared instances of combat action
      */
-    public Slime(int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
-        super("Slime", healthPoints, strength, experience, loot, moves);
+    public Slime(int healthPoints, int strength, int experience, WeaponType[] lootTable, CombatAction[] moves) {
+        super("Slime", healthPoints, strength, experience, lootTable, moves);
     }
 }
