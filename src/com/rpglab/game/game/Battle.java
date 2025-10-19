@@ -145,11 +145,11 @@ public class Battle {
 
             while (true) {
                 int battleChoice = menu.displayMenu("What's your next action?", new String[] {
-                    "Save Game",
                     "Search for loot",
                     "Check status",
-                    "Continue game",
-                    "Exit game"
+                    "Continue gameplay",
+                    "Save current gameplay",
+                    "Exit current gameplay"
                 });
 
                 if (battleChoice == 5) {
@@ -157,11 +157,19 @@ public class Battle {
                     System.out.println("Exiting the game...");
                     return false;
                 } else if (battleChoice == 4) {
-                    break;
+                    // Save game - just save difficulty, hero, and currentPhase
+                    String saveName = "savefile";//com.rpglab.game.utils.InputManager.readString("Save name: ");
+                    Battle toSave = new Battle(difficulty, hero, currentPhase);
+                    com.rpglab.game.utils.PersistenceGenerator.saveGame(toSave, saveName);
                 } else if (battleChoice == 3) {
+                    // Continue gameplay
+                    break;
+                } else if (battleChoice == 2) {
+                    // Check status
                     hero.showStatus();
                     continue;
-                } else if (battleChoice == 2) {
+                } else if (battleChoice == 1) {
+                    // Search for loot
                     if (searchedLoot) {
                         System.out.println("You already checked for loot.");
                         continue;
@@ -181,11 +189,6 @@ public class Battle {
                     } else {
                         System.out.println("Bad luck! You didn't find any loot.");
                     }
-                } else if (battleChoice == 1) {
-                    // Save game - just save difficulty, hero, and currentPhase
-                    String saveName = "savefile";//com.rpglab.game.utils.InputManager.readString("Save name: ");
-                    Battle toSave = new Battle(difficulty, hero, currentPhase);
-                    com.rpglab.game.utils.PersistenceGenerator.saveGame(toSave, saveName);
                 }
             }
         }
