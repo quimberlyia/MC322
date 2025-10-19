@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.rpglab.game.Exceptions.InvalidWeaponException;
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 import com.rpglab.game.items.Weapon;
 import com.rpglab.game.items.Weapon.WeaponCategory;
 import com.rpglab.game.utils.GameDisplay;
@@ -46,7 +46,7 @@ public abstract class Hero extends Character {
      * @param target The target combatant for the action
      * @return A CombatAction representing the chosen action
      */
-    public abstract CombatAction chooseAction(Combatente target);
+    public abstract CombatAction chooseAction(Combatant target);
 
     /**
      * Constructs a new Hero with the specified attributes.
@@ -195,7 +195,7 @@ public abstract class Hero extends Character {
             return;
         }
 
-        // check allowed categories exposed by Combatente (default: all allowed)
+        // check allowed categories exposed by Combatant (default: all allowed)
         WeaponCategory[] allowed = this.allowedWeaponCategories();
         boolean ok = false;
         for (WeaponCategory c : allowed) {

@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A consumption-based attack that engulfs or partially swallows the target.
@@ -27,7 +27,7 @@ public class Swallow implements CombatAction {
      * @param user   the combatant performing the swallow attack
      * @param target the combatant being engulfed and damaged
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = user.getHealthPoints() / 10; // Damage based on user's health
         target.takeDamage(damage);
         System.out.println(user.getName() + " swallows " + target.getName() + " dealing " + damage + " damage!");

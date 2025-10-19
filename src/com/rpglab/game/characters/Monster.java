@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 import com.rpglab.game.interfaces.Item;
 import com.rpglab.game.interfaces.Lootable;
 import com.rpglab.game.items.Weapon;
@@ -56,7 +56,7 @@ public class Monster extends Character implements Lootable  {
      * @param target The target combatant for the action
      * @return A randomly selected CombatAction, or null if no actions are available
      */
-    public CombatAction chooseAction(Combatente target) {
+    public CombatAction chooseAction(Combatant target) {
         if (actions.isEmpty()) return null;
         Random rand = new Random();
         int idx = rand.nextInt(actions.size());

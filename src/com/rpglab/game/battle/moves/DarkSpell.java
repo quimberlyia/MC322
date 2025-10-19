@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A devastating dark magic spell used by powerful evil spellcasters.
@@ -26,7 +26,7 @@ public class DarkSpell implements CombatAction {
      * @param user   the combatant casting the dark spell (typically powerful magic users)
      * @param target the combatant receiving the dark magical damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 40; // Powerful dark magic damage
         target.takeDamage(damage);
         System.out.println(user.getName() + " cast a powerful dark spell on " + target.getName() + " dealing " + damage + " damage!");

@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A swift claw-based melee attack used by beast-type monsters.
@@ -25,7 +25,7 @@ public class ClawSwipe implements CombatAction {
      * @param user   the combatant performing the claw swipe attack
      * @param target the combatant receiving the slashing damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 18; // Claw swipe damage
         target.takeDamage(damage);
         System.out.println(user.getName() + " used claw swipe on " + target.getName() + " dealing " + damage + " damage!");

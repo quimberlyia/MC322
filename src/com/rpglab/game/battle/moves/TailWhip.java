@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A quick, lashing tail attack used by agile reptilian creatures.
@@ -26,7 +26,7 @@ public class TailWhip implements CombatAction {
      * @param user   the combatant performing the tail whip (typically agile reptiles)
      * @param target the combatant receiving the lashing damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 20; // Tail whip damage
         target.takeDamage(damage);
         System.out.println(user.getName() + " used tail whip on " + target.getName() + " dealing " + damage + " damage!");

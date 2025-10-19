@@ -14,7 +14,7 @@ import com.rpglab.game.items.Weapon.WeaponCategory;
  * @version 1.0
  * @since 1.0
  */
-public interface Combatente {
+public interface Combatant {
     
     /**
      * Returns the name of this combatant.
@@ -58,7 +58,7 @@ public interface Combatente {
      * @param target The target combatant for the action
      * @return A CombatAction representing the chosen action
      */
-    CombatAction chooseAction(Combatente target);
+    CombatAction chooseAction(Combatant target);
     
     /**
      * Returns the strength value of this combatant.

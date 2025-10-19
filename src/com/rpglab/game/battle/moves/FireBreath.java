@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A devastating fire-breathing attack used by dragon-type monsters.
@@ -26,7 +26,7 @@ public class FireBreath implements CombatAction {
      * @param user   the combatant breathing fire (typically dragons)
      * @param target the combatant receiving the fire damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 35; // Powerful fire breath damage
         target.takeDamage(damage);
         System.out.println(user.getName() + " breathed fire on " + target.getName() + " dealing " + damage + " damage!");

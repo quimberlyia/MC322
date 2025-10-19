@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A precise ranged attack combat action primarily used by Archer heroes.
@@ -28,7 +28,7 @@ public class PreciseShot implements CombatAction {
      * @param hero The combatant performing the precise shot (typically an Archer)
      * @param target The combatant receiving the attack
      */
-    public void execute(Combatente hero, Combatente target) {
+    public void execute(Combatant hero, Combatant target) {
         int damage = (hero.getStrength() * 3 + hero.getWeapon().getDamage()) / 2;
         target.takeDamage(damage);
         System.out.println("The hero " + hero.getName() + " used a precise shot with " + hero.getWeapon().getName() + " on " + target.getName() + " for " + damage + " damage!");

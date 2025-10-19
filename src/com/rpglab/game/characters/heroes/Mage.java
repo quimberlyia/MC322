@@ -5,7 +5,7 @@ import com.rpglab.game.battle.moves.PowerfulSpell;
 import com.rpglab.game.characters.Character;
 import com.rpglab.game.characters.Hero;
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 import com.rpglab.game.items.weapons.Staff;
 import com.rpglab.game.items.Weapon.WeaponCategory; 
 
@@ -101,7 +101,7 @@ public class Mage extends Hero {
      * @param target The target combatant for the action
      * @return A randomly selected CombatAction, or null if no actions are available
      */
-    public CombatAction chooseAction(Combatente target) {
+    public CombatAction chooseAction(Combatant target) {
         if (action.isEmpty()) return null;
         int idx = (int) (Math.random() * action.size());
         return action.get(idx);

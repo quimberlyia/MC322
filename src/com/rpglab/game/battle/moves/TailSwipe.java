@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A powerful tail-based sweeping attack used by reptilian and draconic monsters.
@@ -26,7 +26,7 @@ public class TailSwipe implements CombatAction {
      * @param user   the combatant performing the tail swipe (typically reptilian creatures)
      * @param target the combatant receiving the bludgeoning damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 25; // Tail swipe damage
         target.takeDamage(damage);
         System.out.println(user.getName() + " used tail swipe on " + target.getName() + " dealing " + damage + " damage!");

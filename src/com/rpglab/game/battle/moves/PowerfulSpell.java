@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A devastating magical attack combat action primarily used by Mage heroes.
@@ -29,7 +29,7 @@ public class PowerfulSpell implements CombatAction {
      * @param hero The combatant casting the powerful spell (typically a Mage)
      * @param monster The combatant receiving the magical attack
      */
-    public void execute(Combatente hero, Combatente monster) {
+    public void execute(Combatant hero, Combatant monster) {
         int damage = (hero.getStrength() * 3 + hero.getWeapon().getDamage()) / 2;
         monster.takeDamage(damage);
         System.out.println("The hero " + hero.getName() + " casts a powerful spell on " + monster.getName() + " with " + hero.getWeapon().getName() + " dealing " + damage + " damage!");

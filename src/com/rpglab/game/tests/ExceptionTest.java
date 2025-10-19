@@ -18,7 +18,7 @@ public class ExceptionTest {
             }
 
             @Override
-            public com.rpglab.game.interfaces.CombatAction chooseAction(com.rpglab.game.interfaces.Combatente target) {
+            public com.rpglab.game.interfaces.CombatAction chooseAction(com.rpglab.game.interfaces.Combatant target) {
                 return null; // Implementação de teste
             }
         };
@@ -43,7 +43,7 @@ public class ExceptionTest {
                 System.out.println("Using special skill on target: " + target.getName());
             }
             @Override
-            public com.rpglab.game.interfaces.CombatAction chooseAction(com.rpglab.game.interfaces.Combatente target) {
+            public com.rpglab.game.interfaces.CombatAction chooseAction(com.rpglab.game.interfaces.Combatant target) {
                 return null; // Test implementation
             }
         };

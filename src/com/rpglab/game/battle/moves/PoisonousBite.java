@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A venomous bite attack used by creatures with toxic fangs.
@@ -27,7 +27,7 @@ public class PoisonousBite implements CombatAction {
      * @param user   the combatant performing the poisonous bite
      * @param target the combatant receiving the toxic damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 22; // Poisonous bite damage
         target.takeDamage(damage);
         System.out.println(user.getName() + " used poisonous bite on " + target.getName() + " dealing " + damage + " damage!");

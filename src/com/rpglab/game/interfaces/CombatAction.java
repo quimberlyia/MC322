@@ -30,5 +30,5 @@ public interface CombatAction {
      * @param user The combatant performing this action
      * @param target The combatant who is the target of this action
      */
-    void execute(Combatente user, Combatente target);
+    void execute(Combatant user, Combatant target);
 }

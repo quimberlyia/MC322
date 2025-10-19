@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A healing combat action that restores health points to the user.
@@ -26,7 +26,7 @@ public class HealingPotion implements CombatAction {
      * @param user The combatant who drinks the healing potion
      * @param target The target parameter (ignored for this self-healing action)
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int healAmount = 30;
         user.heal(healAmount);
         System.out.println(user.getName() + " drinks a healing potion and recovers " + healAmount + " health points!");

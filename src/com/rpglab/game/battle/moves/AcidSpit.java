@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A corrosive acid spit attack used by slime-type monsters.
@@ -25,7 +25,7 @@ public class AcidSpit implements CombatAction {
      * @param user   the combatant performing the acid spit attack
      * @param target the combatant receiving the acid damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 15; // Fixed acid damage
         target.takeDamage(damage);
         System.out.println(user.getName() + " used acid spit on " + target.getName() + " dealing " + damage + " damage!");

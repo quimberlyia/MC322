@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A powerful dark-enchanted sword attack used by high-level evil creatures.
@@ -26,7 +26,7 @@ public class DarkSlash implements CombatAction {
      * @param user   the combatant performing the dark slash attack (typically boss monsters)
      * @param target the combatant receiving the dark-enchanted damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 45; // Powerful dark sword attack
         target.takeDamage(damage);
         System.out.println(user.getName() + " slashed dark enchanted sword on " + target.getName() + " dealing " + damage + " damage!");

@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A basic sword attack using a weathered, rusty blade.
@@ -27,7 +27,7 @@ public class RustySword implements CombatAction {
      * @param user   the combatant wielding the rusty sword (typically undead)
      * @param target the combatant receiving the slashing damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 12; // Rusty sword damage
         target.takeDamage(damage);
         System.out.println(user.getName() + " used rusty sword on " + target.getName() + " dealing " + damage + " damage!");

@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * An intimidating roar attack that damages enemies through fear and sonic force.
@@ -26,7 +26,7 @@ public class Roar implements CombatAction {
      * @param user   the combatant performing the roar (typically large predators)
      * @param target the combatant receiving the intimidation damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 25; // Intimidating roar damage
         target.takeDamage(damage);
         System.out.println(user.getName() + " used roar on " + target.getName() + " dealing " + damage + " damage!");

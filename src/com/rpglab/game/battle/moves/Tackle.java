@@ -1,7 +1,7 @@
 package com.rpglab.game.battle.moves;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 
 /**
  * A basic physical tackle attack used by various monsters.
@@ -26,7 +26,7 @@ public class Tackle implements CombatAction {
      * @param user   the combatant performing the tackle attack
      * @param target the combatant receiving the blunt force damage
      */
-    public void execute(Combatente user, Combatente target) {
+    public void execute(Combatant user, Combatant target) {
         int damage = 10; // Basic tackle damage
         target.takeDamage(damage);
         System.out.println(user.getName() + " used tackle on " + target.getName() + " dealing " + damage + " damage!");

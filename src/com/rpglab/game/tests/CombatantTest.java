@@ -2,16 +2,16 @@ package com.rpglab.game.tests;
 
 import com.rpglab.game.characters.Hero;
 import com.rpglab.game.characters.Monster;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 import com.rpglab.game.interfaces.Lootable;
 import com.rpglab.game.items.Weapon;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CombatenteTest {
+public class CombatantTest {
 
     @Test
-    void testHeroImplementsCombatente() {
+    void testHeroImplementsCombatant() {
         Hero hero = new Hero("Herói", 100, 20, 0.5) {
             @Override
             public void useSpecialSkill(com.rpglab.game.characters.Character target) {
@@ -19,18 +19,18 @@ public class CombatenteTest {
             }
 
             @Override
-            public com.rpglab.game.interfaces.CombatAction chooseAction(Combatente target) {
+            public com.rpglab.game.interfaces.CombatAction chooseAction(Combatant target) {
                 return null; // Implementação de teste
             }
         };
-        assertTrue(hero instanceof Combatente, "Herói deve implementar a interface Combatente");
+        assertTrue(hero instanceof Combatant, "Herói deve implementar a interface Combatant");
     }
 
     @Test
-    void testMonsterImplementsCombatente() {
+    void testMonsterImplementsCombatant() {
         Weapon[] loot = new Weapon[0];
         Monster monster = new Monster("Monstro", 80, 15, 50, loot);
-        assertTrue(monster instanceof Combatente, "Monstro deve implementar a interface Combatente");
+        assertTrue(monster instanceof Combatant, "Monstro deve implementar a interface Combatant");
     }
 
     @Test
@@ -42,7 +42,7 @@ public class CombatenteTest {
             }
 
             @Override
-            public com.rpglab.game.interfaces.CombatAction chooseAction(Combatente target) {
+            public com.rpglab.game.interfaces.CombatAction chooseAction(Combatant target) {
                 return null; // Implementação de teste
             }
         };
@@ -69,7 +69,7 @@ public class CombatenteTest {
             }
 
             @Override
-            public com.rpglab.game.interfaces.CombatAction chooseAction(Combatente target) {
+            public com.rpglab.game.interfaces.CombatAction chooseAction(Combatant target) {
                 return null; // Implementação de teste
             }
         };

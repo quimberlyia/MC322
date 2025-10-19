@@ -3,7 +3,7 @@ package com.rpglab.game.game;
 import com.rpglab.game.characters.Hero;
 import com.rpglab.game.characters.Monster;
 import com.rpglab.game.enums.SceneType;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 import com.rpglab.game.interfaces.Scene;
 
 /**
@@ -85,7 +85,7 @@ public class CombatScene implements Scene {
      * @return true if all monsters are defeated, false otherwise
      */
     public boolean isCompleted() {
-        for (Combatente monster : monsters) {
+        for (Combatant monster : monsters) {
             if (monster.isAlive()) {
                 return false;
             }

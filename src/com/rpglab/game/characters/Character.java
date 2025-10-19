@@ -1,7 +1,7 @@
 package com.rpglab.game.characters;
 
 import com.rpglab.game.interfaces.CombatAction;
-import com.rpglab.game.interfaces.Combatente;
+import com.rpglab.game.interfaces.Combatant;
 import com.rpglab.game.items.Weapon;
 import com.rpglab.game.utils.GameDisplay;
 
@@ -12,13 +12,13 @@ import com.rpglab.game.utils.GameDisplay;
  * 
  * <p>All characters have basic attributes like name, health points, and strength.
  * They can equip weapons, take damage, heal, and participate in combat through
- * the Combatente interface implementation.</p>
+ * the Combatant interface implementation.</p>
  * 
  * @author quimberlyia and gaamelu
  * @version 1.0
  * @since 1.0
  */
-public abstract class Character implements Combatente {
+public abstract class Character implements Combatant {
 
     /** The character's name */
     private String name;
@@ -116,7 +116,7 @@ public abstract class Character implements Combatente {
 
     /**
      * Applies damage to this character, reducing their health points.
-     * This implementation of the Combatente interface uses the internal
+     * This implementation of the Combatant interface uses the internal
      * changeHealth method to handle damage application.
      * 
      * @param damage The amount of damage to inflict (must be non-negative)
@@ -127,7 +127,7 @@ public abstract class Character implements Combatente {
 
     /**
      * Restores health points to this character.
-     * This implementation of the Combatente interface uses the internal
+     * This implementation of the Combatant interface uses the internal
      * changeHealth method to handle healing.
      * 
      * @param amount The amount of health to restore (must be non-negative)
@@ -154,7 +154,7 @@ public abstract class Character implements Combatente {
      * @param target The target combatant for the action
      * @return A CombatAction representing the chosen action
      */
-    public abstract CombatAction chooseAction(Combatente target);
+    public abstract CombatAction chooseAction(Combatant target);
 
     /**
      * Displays the character's current status including name, health, and strength.
