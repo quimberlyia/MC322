@@ -2,6 +2,7 @@ package com.rpglab.game.tests;
 
 import com.rpglab.game.characters.Hero;
 import com.rpglab.game.characters.Monster;
+import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.interfaces.Combatant;
 import com.rpglab.game.interfaces.Lootable;
 import com.rpglab.game.items.Weapon;
@@ -12,7 +13,8 @@ public class CombatantTest {
 
     @Test
     void testHeroImplementsCombatant() {
-        Hero hero = new Hero("Herói", 100, 20, 0.5) {
+        CombatAction[] moves = new CombatAction[0];
+        Hero hero = new Hero("Herói", 100, 20, 0.5, moves) {
             @Override
             public void useSpecialSkill(com.rpglab.game.characters.Character target) {
                 System.out.println("Usando habilidade especial no alvo: " + target.getName());
@@ -29,13 +31,15 @@ public class CombatantTest {
     @Test
     void testMonsterImplementsCombatant() {
         Weapon[] loot = new Weapon[0];
-        Monster monster = new Monster("Monstro", 80, 15, 50, loot);
+        CombatAction[] moves = new CombatAction[0];
+        Monster monster = new Monster("Monstro", 80, 15, 50, loot, moves);
         assertTrue(monster instanceof Combatant, "Monstro deve implementar a interface Combatant");
     }
 
     @Test
     void testHeroReceivesDamageAndAttacks() {
-        Hero hero = new Hero("Herói", 100, 20, 0.5) {
+        CombatAction[] heroMoves = new CombatAction[0];
+        Hero hero = new Hero("Herói", 100, 20, 0.5, heroMoves) {
             @Override
             public void useSpecialSkill(com.rpglab.game.characters.Character target) {
                 System.out.println("Usando habilidade especial no alvo: " + target.getName());
@@ -47,7 +51,8 @@ public class CombatantTest {
             }
         };
         Weapon[] loot = new Weapon[0];
-        Monster monster = new Monster("Monstro", 80, 15, 50, loot);
+        CombatAction[] monsterMoves = new CombatAction[0];
+        Monster monster = new Monster("Monstro", 80, 15, 50, loot, monsterMoves);
 
         // Herói ataca o monstro
         monster.takeDamage(hero.getStrength());
@@ -61,8 +66,10 @@ public class CombatantTest {
     @Test
     void testMonsterReceivesDamageAndAttacks() {
         Weapon[] loot = new Weapon[0];
-        Monster monster = new Monster("Monstro", 80, 15, 50, loot);
-        Hero hero = new Hero("Herói", 100, 20, 0.5) {
+        CombatAction[] monsterMoves = new CombatAction[0];
+        Monster monster = new Monster("Monstro", 80, 15, 50, loot, monsterMoves);
+        CombatAction[] heroMoves = new CombatAction[0];
+        Hero hero = new Hero("Herói", 100, 20, 0.5, heroMoves) {
             @Override
             public void useSpecialSkill(com.rpglab.game.characters.Character target) {
                 System.out.println("Usando habilidade especial no alvo: " + target.getName());
@@ -86,7 +93,8 @@ public class CombatantTest {
     @Test
     void testMonsterIsLootable() {
         Weapon[] loot = new Weapon[0];
-        Monster monster = new Monster("Monstro", 80, 15, 50, loot);
+        CombatAction[] moves = new CombatAction[0];
+        Monster monster = new Monster("Monstro", 80, 15, 50, loot, moves);
         assertTrue(monster instanceof Lootable, "Monstro deve implementar a interface Lootable");
     }
 }
