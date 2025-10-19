@@ -37,15 +37,8 @@ public class Cockatrice extends Monster {
         super("Cockatrice", healthPoints, strength, experience, lootTable, moves);
     }
 
-        // This constructor is required for JAXB to instantiate the class during XML deserialization/ No-arg constructor for JAXB
-        protected Cockatrice() {
-            super();
-        }
-    
-        @Override
-        public void initActions() {
-            this.actions.clear();
-            addAction(new PetrifyingGaze());
-            addAction(new TailSwipe());
-        }
+    // This constructor is required for JAXB to instantiate the class during XML deserialization/ No-arg constructor for JAXB
+    protected Cockatrice() {
+        super();
+    }
 }

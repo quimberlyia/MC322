@@ -94,4 +94,16 @@ public class Archer extends Hero {
         int idx = (int) (Math.random() * action.size());
         return action.get(idx);
     }
+
+    /**
+     * Initializes combat actions for the archer after deserialization.
+     * Creates shared instances of PreciseShot and HealingPotion and adds them
+     * to the archer's action list. Called automatically after loading from XML.
+     */
+    @Override
+    public void initActions() {
+        action.clear();
+        addAction(new com.rpglab.game.battle.moves.PreciseShot());
+        addAction(new com.rpglab.game.battle.moves.HealingPotion());
+    }
 }

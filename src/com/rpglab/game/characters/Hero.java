@@ -12,8 +12,13 @@ import com.rpglab.game.utils.GameDisplay;
 import java.util.ArrayList;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlSeeAlso;
 import jakarta.xml.bind.annotation.XmlTransient;
 
+import com.rpglab.game.characters.heroes.Mage;
+import com.rpglab.game.characters.heroes.Archer;
+
+@XmlSeeAlso({Mage.class, Archer.class})
 @XmlAccessorType(XmlAccessType.FIELD)
 /**
  * Abstract base class for all hero characters in the Dungeon Adventure RPG.
@@ -41,6 +46,7 @@ public abstract class Hero extends Character {
     private double lucky = 0;
 
     /** List of available combat actions for this hero */
+    @XmlTransient
     protected List<CombatAction> action = new ArrayList<>();
 
     // No-arg constructor for JAXB
@@ -169,6 +175,13 @@ public abstract class Hero extends Character {
     public List<CombatAction> getActions() {
         return action;
     }
+
+    /**
+     * Abstract method to initialize/restore combat actions after deserialization.
+     * Each hero subclass must implement this to recreate their combat action instances.
+     * This is necessary because actions are marked as @XmlTransient and not serialized.
+     */
+    public abstract void initActions();
 
     /**
      * Displays the hero's detailed status including level, experience, and equipment.

@@ -106,4 +106,16 @@ public class Mage extends Hero {
         int idx = (int) (Math.random() * action.size());
         return action.get(idx);
     }
+
+    /**
+     * Initializes combat actions for the mage after deserialization.
+     * Creates shared instances of PowerfulSpell and HealingPotion and adds them
+     * to the mage's action list. Called automatically after loading from XML.
+     */
+    @Override
+    public void initActions() {
+        action.clear();
+        addAction(new com.rpglab.game.battle.moves.PowerfulSpell());
+        addAction(new com.rpglab.game.battle.moves.HealingPotion());
+    }
 }

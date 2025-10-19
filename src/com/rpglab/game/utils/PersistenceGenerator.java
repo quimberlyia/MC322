@@ -81,27 +81,10 @@ public class PersistenceGenerator {
 
             File out = new File(dir, name + ".xml");
 
-            // Temporarily clear loot from monsters so loot is not saved
-            java.util.Map<com.rpglab.game.characters.Monster, com.rpglab.game.items.Weapon[]> originalLoot = new java.util.HashMap<>();
-            if (b.getScenes() != null) {
-                for (CombatScene scene : b.getScenes()) {
-                    if (scene == null || scene.getMonsters() == null) continue;
-                    for (com.rpglab.game.characters.Monster m : scene.getMonsters()) {
-                        originalLoot.put(m, m.getLoot());
-                        m.setLoot(null);
-                    }
-                }
-            }
-
             JAXBContext ctx = JAXBContext.newInstance(Battle.class, CombatScene.class, com.rpglab.game.characters.Monster.class, com.rpglab.game.items.Weapon.class);
             Marshaller mar = ctx.createMarshaller();
             mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             mar.marshal(b, out);
-
-            // restore loot
-            for (java.util.Map.Entry<com.rpglab.game.characters.Monster, com.rpglab.game.items.Weapon[]> e : originalLoot.entrySet()) {
-                e.getKey().setLoot(e.getValue());
-            }
 
             System.out.println("Jogo salvo em: " + out.getAbsolutePath());
         } catch (JAXBException e) {
@@ -126,13 +109,19 @@ public class PersistenceGenerator {
             Object obj = u.unmarshal(in);
             if (obj instanceof Battle) {
                 Battle loaded = (Battle) obj;
-                // rehydrate monster actions
+                
+                // Restore hero actions after deserialization
+                if (loaded.getHero() != null) {
+                    loaded.getHero().initActions();
+                }
+                
+                // Restore monster actions (TODO: implement Monster.initActions() if needed)
                 if (loaded.getScenes() != null) {
                     for (CombatScene scene : loaded.getScenes()) {
                         if (scene == null || scene.getMonsters() == null) continue;
-                        for (com.rpglab.game.characters.Monster m : scene.getMonsters()) {
-                            try { m.initActions(); } catch (Exception ex) { /* ignore */ }
-                        }
+                        // for (com.rpglab.game.characters.Monster m : scene.getMonsters()) {
+                        //     try { m.initActions(); } catch (Exception ex) { /* ignore */ }
+                        // }
                     }
                 }
                 return loaded;

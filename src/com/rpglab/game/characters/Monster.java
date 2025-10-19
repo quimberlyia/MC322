@@ -160,14 +160,6 @@ public class Monster extends Character implements Lootable  {
     }
 
     /**
-     * Hook to initialize actions after deserialization. Subclasses override this
-     * to re-add their default CombatAction implementations.
-     */
-    public void initActions() {
-        // default no-op; subclasses should override
-    }
-
-    /**
      * Adds a combat action to this monster's available actions.
      * 
      * @param action The CombatAction to add to the monster's repertoire

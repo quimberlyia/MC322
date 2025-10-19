@@ -36,14 +36,7 @@ public class Slime extends Monster {
         super("Slime", healthPoints, strength, experience, lootTable, moves);
     }
 
-    @Override
-    public void initActions() {
-        this.actions.clear();
-        addAction(new AcidSpit());
-        addAction(new Swallow());
-    }
-
-    //// This constructor is required for JAXB to instantiate the class during XML deserialization
+    // This constructor is required for JAXB to instantiate the class during XML deserialization
     protected Slime() {
         super();
     }
