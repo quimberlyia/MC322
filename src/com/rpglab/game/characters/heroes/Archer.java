@@ -27,6 +27,11 @@ public class Archer extends Hero {
     /** The archer's aim value, affecting accuracy and precision in combat */
     private int aim;
 
+    // No-arg constructor for JAXB
+    protected Archer() {
+        super();
+    }
+
     /**
      * Constructs a new Archer with the specified attributes.
      * The archer is automatically equipped with a bow and gains access

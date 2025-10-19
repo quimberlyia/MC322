@@ -42,4 +42,15 @@ public class DemonKing extends Monster {
         addAction(new DarkSlash());
         addAction(new DarkSpell());
     }
+        // This constructor is required for JAXB to instantiate the class during XML deserialization
+        protected DemonKing() {
+            super();
+        }
+
+        @Override
+        public void initActions() {
+            this.actions.clear();
+            addAction(new DarkSlash());
+            addAction(new DarkSpell());
+        }
 }

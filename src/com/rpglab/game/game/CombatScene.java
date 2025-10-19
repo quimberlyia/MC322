@@ -6,6 +6,12 @@ import com.rpglab.game.enums.SceneType;
 import com.rpglab.game.interfaces.Combatente;
 import com.rpglab.game.interfaces.Scene;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 /**
  * Represents a combat encounter scene within the dungeon.
  * This class implements the Scene interface to create areas where
@@ -26,11 +32,23 @@ import com.rpglab.game.interfaces.Scene;
  * @see SceneType
  * @see Monster
  */
+
+@XmlRootElement(name = "combatScene") // Root element for JAXB 
+@XmlAccessorType(XmlAccessType.FIELD) // Field access for JAXB
+
 public class CombatScene implements Scene {
     /** The type of scene, determining environmental effects and description */
     private SceneType type;
     /** Array of monsters that must be defeated to complete this scene */
+   
+    @XmlElementWrapper(name = "monsters") // Wrapper for the monsters array
+    @XmlElement(name = "monster") // Individual monster elements
+    
     private Monster[] monsters;
+
+    // This constructor is required for JAXB to instantiate the class during XML deserialization
+    public CombatScene() { 
+    }
 
     /**
      * Constructs a new combat scene with the specified type and monsters.

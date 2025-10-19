@@ -11,6 +11,11 @@ import com.rpglab.game.items.Weapon;
 import com.rpglab.game.utils.GameDisplay;
 
 import java.util.ArrayList;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
+import jakarta.xml.bind.annotation.XmlTransient;
 
 /**
  * Represents a monster character in the Dungeon Adventure RPG.
@@ -27,16 +32,25 @@ import java.util.ArrayList;
  * @version 1.0
  * @since 1.0
  */
+@XmlAccessorType(XmlAccessType.FIELD) // Field access for JAXB
+
 public class Monster extends Character implements Lootable  {
 
     /** The experience points awarded to heroes when this monster is defeated */
     private int experience;
     
     /** Array of weapons that this monster can drop as loot */
+    @XmlElementWrapper(name = "loot")
+    @XmlElement(name = "weapon")
     private Weapon[] loot;
     
     /** List of combat actions available to this monster */
+    @XmlTransient
     protected List<CombatAction> actions = new ArrayList<>();
+
+    // This constructor is required for JAXB to instantiate the class during XML deserialization
+    public Monster() {
+    }
 
     /**
      * Overrides the heal method to prevent monsters from healing.
@@ -124,6 +138,14 @@ public class Monster extends Character implements Lootable  {
      */
     public List<CombatAction> getActions() {
         return actions;
+    }
+
+    /**
+     * Hook to initialize actions after deserialization. Subclasses override this
+     * to re-add their default CombatAction implementations.
+     */
+    public void initActions() {
+        // default no-op; subclasses should override
     }
 
     /**

@@ -10,7 +10,11 @@ import com.rpglab.game.items.Weapon.WeaponCategory;
 import com.rpglab.game.utils.GameDisplay;
 
 import java.util.ArrayList;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlTransient;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 /**
  * Abstract base class for all hero characters in the Dungeon Adventure RPG.
  * Heroes are player-controlled characters that can level up, gain experience,
@@ -38,6 +42,11 @@ public abstract class Hero extends Character {
 
     /** List of available combat actions for this hero */
     protected List<CombatAction> action = new ArrayList<>();
+
+    // No-arg constructor for JAXB
+    public Hero() {
+        super();
+    }
 
     /**
      * Abstract method for choosing a combat action.

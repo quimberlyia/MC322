@@ -38,4 +38,16 @@ public class Skeleton extends Monster {
         addAction(new RustySword());
         addAction(new Tackle());
     }
+
+        // This constructor is required for JAXB to instantiate the class during XML deserialization
+        protected Skeleton() {
+            super();
+        }
+
+        @Override
+        public void initActions() {
+            this.actions.clear();
+            addAction(new RustySword());
+            addAction(new Tackle());
+        }
 }

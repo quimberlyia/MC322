@@ -35,7 +35,18 @@ public class Dragon extends Monster {
      */
     public Dragon(String name, int healthPoints, int strength, int experience, Weapon[] loot) {
         super(name, healthPoints, strength, experience, loot);
-        addAction(new Roar());
-        addAction(new FireBreath());
+            addAction(new FireBreath());
+            addAction(new Roar());
     }
+        // This constructor is required for JAXB to instantiate the class during XML deserialization
+        protected Dragon() {
+            super();
+        }
+    
+        @Override
+        public void initActions() {
+            this.actions.clear();
+            addAction(new FireBreath());
+            addAction(new Roar());
+        }
 }

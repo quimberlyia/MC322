@@ -4,6 +4,12 @@ import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.interfaces.Combatente;
 import com.rpglab.game.items.Weapon;
 import com.rpglab.game.utils.GameDisplay;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlTransient;
+
+@XmlAccessorType(XmlAccessType.FIELD) // Field access for JAXB
 
 /**
  * Abstract base class for all characters in the Dungeon Adventure RPG.
@@ -31,6 +37,10 @@ public abstract class Character implements Combatente {
     
     /** The weapon currently equipped by this character */
     private Weapon weapon;    
+
+    // No-arg constructor required for JAXB
+    public Character() {
+    }
 
     /**
      * Constructs a new Character with the specified attributes.

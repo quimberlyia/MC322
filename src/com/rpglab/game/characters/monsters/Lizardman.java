@@ -42,4 +42,17 @@ public class Lizardman extends Monster {
         addAction(new ClawSwipe());
         addAction(new TailWhip());
     }
+
+        // This constructor is required for JAXB to instantiate the class during XML deserialization
+        protected Lizardman() {
+            super();
+        }
+
+        @Override
+        public void initActions() {
+            this.actions.clear();
+            addAction(new PoisonousBite());
+            addAction(new ClawSwipe());
+            addAction(new TailWhip());
+        }
 }
