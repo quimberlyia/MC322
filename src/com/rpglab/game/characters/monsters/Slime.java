@@ -1,8 +1,7 @@
 package com.rpglab.game.characters.monsters;
 
-import com.rpglab.game.battle.moves.AcidSpit;
-import com.rpglab.game.battle.moves.Swallow;
 import com.rpglab.game.characters.Monster;
+import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.items.Weapon;
 
 /**
@@ -27,15 +26,13 @@ public class Slime extends Monster {
      * Constructs a new Slime monster with the specified attributes.
      * Automatically equips the slime with Acid Spit and Swallow combat actions.
      * 
-     * @param name The slime's name
      * @param healthPoints The slime's initial health points
      * @param strength The slime's strength value
      * @param experience The experience points awarded when this slime is defeated
      * @param loot Array of weapons this slime can drop as loot
+     * @param moves List of shared instances of combat action
      */
-    public Slime(String name, int healthPoints, int strength, int experience, Weapon[] loot) {
-        super(name, healthPoints, strength, experience, loot);
-        addAction(new AcidSpit());
-        addAction(new Swallow());
+    public Slime(int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
+        super("Slime", healthPoints, strength, experience, loot, moves);
     }
 }

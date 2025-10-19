@@ -1,7 +1,5 @@
 package com.rpglab.game.characters.heroes;
 
-import com.rpglab.game.battle.moves.HealingPotion;
-import com.rpglab.game.battle.moves.PreciseShot;
 import com.rpglab.game.characters.Character;
 import com.rpglab.game.characters.Hero;
 import com.rpglab.game.interfaces.CombatAction;
@@ -37,15 +35,12 @@ public class Archer extends Hero {
      * @param strength The archer's strength value
      * @param aim The archer's aim value for precision attacks
      * @param lucky The archer's luck value affecting special skill success
+     * @param moves List of shared instances of combat action
      */
-    public Archer(String name, int healthPoints, int strength, int aim, double lucky) {
-        super(name, healthPoints, strength, lucky);
+    public Archer(String name, int healthPoints, int strength, int aim, double lucky, CombatAction[] moves) {
+        super(name, healthPoints, strength, lucky, moves);
         this.aim = aim;
         setWeapon(new Bow());
-        
-        // Add combat actions
-        addAction(new PreciseShot());
-        addAction(new HealingPotion());
     }
 
     @Override

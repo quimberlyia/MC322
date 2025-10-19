@@ -1,5 +1,6 @@
 package com.rpglab.game.game;
 
+import com.rpglab.game.battle.moves.*;
 import com.rpglab.game.characters.Monster;
 import com.rpglab.game.characters.monsters.Cockatrice;
 import com.rpglab.game.characters.monsters.DemonKing;
@@ -9,6 +10,7 @@ import com.rpglab.game.characters.monsters.Skeleton;
 import com.rpglab.game.characters.monsters.Slime;
 import com.rpglab.game.enums.SceneType;
 import com.rpglab.game.enums.Difficulty;
+import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.interfaces.World;
 import com.rpglab.game.items.Weapon;
 import com.rpglab.game.items.weapons.Bow;
@@ -58,6 +60,11 @@ public class DungeonWorld implements World {
      *   <li>Loot quality and rarity</li>
      * </ul>
      * 
+     * <p>This implementation uses shared aggregation for combat actions. Each unique
+     * combat action is instantiated only once and shared among all monsters that use it.
+     * This design follows the principle that combat actions are generic and reusable,
+     * not dependent on specific character instances.</p>
+     * 
      * @param Difficulty the difficulty setting that determines monster scaling and loot quality
      */
     public DungeonWorld(Difficulty Difficulty) {
@@ -70,48 +77,70 @@ public class DungeonWorld implements World {
         Weapon[] mediumLoot = new Weapon[] { new SuperBow(), new WillowStaff() };
         Weapon[] hardLoot = new Weapon[] { new ExtremeSuperBow(), new MoonStaff(), new Sword() };
 
-          scenes[0] = new CombatScene(SceneType.DUNGEON_ENTRANCE, new Monster[] {
-            new Slime("Slime", 
+        // Create shared combat action instances for reuse across monsters
+        // These actions are stateless and can be safely shared
+        CombatAction acidSpit = new AcidSpit();
+        CombatAction swallow = new Swallow();
+        CombatAction rustySword = new RustySword();
+        CombatAction tackle = new Tackle();
+        CombatAction poisonousBite = new PoisonousBite();
+        CombatAction clawSwipe = new ClawSwipe();
+        CombatAction tailWhip = new TailWhip();
+        CombatAction roar = new Roar();
+        CombatAction fireBreath = new FireBreath();
+        CombatAction petrifyingGaze = new PetrifyingGaze();
+        CombatAction tailSwipe = new TailSwipe();
+        CombatAction darkSlash = new DarkSlash();
+        CombatAction darkSpell = new DarkSpell();
+
+        scenes[0] = new CombatScene(SceneType.DUNGEON_ENTRANCE, new Monster[] {
+            new Slime(
                 newValue(50, lifeMult), // adjusted life
                 newValue(5, damageMult), // adjusted damage
                 40, 
-                easyLoot
+                easyLoot,
+                new CombatAction[] { acidSpit, swallow } // shared actions
             ),
-            new Skeleton("Skeleton", 
+            new Skeleton(
                 newValue(70, lifeMult),
                 newValue(10, damageMult),
                 80,
-                easyLoot
+                easyLoot,
+                new CombatAction[] { rustySword, tackle } // shared actions
             ),
-            new Lizardman("Lizardman",
+            new Lizardman(
                 newValue(90, lifeMult),
                 newValue(15, damageMult),
                 100,
-                mediumLoot
+                mediumLoot,
+                new CombatAction[] { poisonousBite, clawSwipe, tailWhip } // shared actions
             )
         });
 
         scenes[1] = new CombatScene(SceneType.DARK_HALLWAY, new Monster[] {
-            new Dragon("Dragon",
+            new Dragon(
                 newValue(150, lifeMult),
                 newValue(35, damageMult),
                 150,
-                hardLoot
+                hardLoot,
+                new CombatAction[] { roar, fireBreath } // shared actions
             ),
-            new Cockatrice("Cockatrice",
+            new Cockatrice(
                 newValue(80, lifeMult),
                 newValue(30, damageMult),
                 150,
-                hardLoot
+                hardLoot, 
+                new CombatAction[] { petrifyingGaze, tailSwipe } // shared actions
             )
         });
 
         scenes[2] = new CombatScene(SceneType.MONSTER_LAIR, new Monster[] {
-            new DemonKing("Demon King",
+            new DemonKing(
                 newValue(200, lifeMult),
                 newValue(50, damageMult),
                 200,
-                hardLoot
+                hardLoot,
+                new CombatAction[] { darkSlash, darkSpell } // shared actions
             )
         });
     }

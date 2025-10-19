@@ -49,16 +49,20 @@ public abstract class Hero extends Character {
     public abstract CombatAction chooseAction(Combatant target);
 
     /**
-     * Constructs a new Hero with the specified attributes.
+     * Constructs a new Hero with the specified attributes and shared combat actions.
      * 
      * @param name The hero's name
      * @param healthPoints The hero's initial health points
      * @param strength The hero's initial strength value
      * @param lucky The hero's initial luck value
+     * @param moves Array of shared combat action instances
      */
-    public Hero(String name, int healthPoints, int strength, double lucky) {
+    public Hero(String name, int healthPoints, int strength, double lucky, CombatAction[] moves) {
         super(name, healthPoints, strength);
         this.lucky = lucky;
+        for (CombatAction move : moves) {
+            addAction(move);
+        }
     }
 
     /**

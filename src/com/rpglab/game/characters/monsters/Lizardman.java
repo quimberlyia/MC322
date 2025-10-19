@@ -1,9 +1,7 @@
 package com.rpglab.game.characters.monsters;
 
-import com.rpglab.game.battle.moves.ClawSwipe;
-import com.rpglab.game.battle.moves.PoisonousBite;
-import com.rpglab.game.battle.moves.TailWhip;
 import com.rpglab.game.characters.Monster;
+import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.items.Weapon;
 
 /**
@@ -30,16 +28,13 @@ public class Lizardman extends Monster {
      * Automatically equips the lizardman with Poisonous Bite, Claw Swipe,
      * and Tail Whip combat actions.
      * 
-     * @param name The lizardman's name
      * @param healthPoints The lizardman's initial health points
      * @param strength The lizardman's strength value
      * @param experience The experience points awarded when this lizardman is defeated
      * @param loot Array of weapons this lizardman can drop as loot
+     * @param moves List of shared instances of combat action
      */
-    public Lizardman(String name, int healthPoints, int strength, int experience, Weapon[] loot) {
-        super(name, healthPoints, strength, experience, loot);
-        addAction(new PoisonousBite());
-        addAction(new ClawSwipe());
-        addAction(new TailWhip());
+    public Lizardman(int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
+        super("Lizardman", healthPoints, strength, experience, loot, moves);
     }
 }

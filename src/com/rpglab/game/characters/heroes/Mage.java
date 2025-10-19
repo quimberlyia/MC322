@@ -1,7 +1,5 @@
 package com.rpglab.game.characters.heroes;
 
-import com.rpglab.game.battle.moves.HealingPotion;
-import com.rpglab.game.battle.moves.PowerfulSpell;
 import com.rpglab.game.characters.Character;
 import com.rpglab.game.characters.Hero;
 import com.rpglab.game.interfaces.CombatAction;
@@ -37,15 +35,12 @@ public class Mage extends Hero {
      * @param strength The mage's strength value
      * @param mana The mage's initial mana points for casting spells
      * @param lucky The mage's luck value affecting special skill success
+     * @param moves List of shared instances of combat action
      */
-    public Mage(String name, int healthPoints, int strength, int mana, double lucky) {
-        super(name, healthPoints, strength, lucky);
+    public Mage(String name, int healthPoints, int strength, int mana, double lucky, CombatAction[] moves) {
+        super(name, healthPoints, strength, lucky, moves);
         this.mana = mana;
         setWeapon(new Staff());
-        
-        // Add combat actions
-        addAction(new PowerfulSpell());
-        addAction(new HealingPotion());
     }
 
     @Override

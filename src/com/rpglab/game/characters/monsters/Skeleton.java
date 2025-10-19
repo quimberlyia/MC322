@@ -1,8 +1,7 @@
 package com.rpglab.game.characters.monsters;
 
-import com.rpglab.game.battle.moves.RustySword;
-import com.rpglab.game.battle.moves.Tackle;
 import com.rpglab.game.characters.Monster;
+import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.items.Weapon;
 
 /**
@@ -27,15 +26,13 @@ public class Skeleton extends Monster {
      * Constructs a new Skeleton monster with the specified attributes.
      * Automatically equips the skeleton with Rusty Sword and Tackle combat actions.
      * 
-     * @param name The skeleton's name
      * @param healthPoints The skeleton's initial health points
      * @param strength The skeleton's strength value
      * @param experience The experience points awarded when this skeleton is defeated
      * @param loot Array of weapons this skeleton can drop as loot
+     * @param moves List of shared instances of combat action
      */
-    public Skeleton(String name, int healthPoints, int strength, int experience, Weapon[] loot) {
-        super(name, healthPoints, strength, experience, loot);
-        addAction(new RustySword());
-        addAction(new Tackle());
+    public Skeleton(int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
+        super("Skeleton", healthPoints, strength, experience, loot, moves);
     }
 }

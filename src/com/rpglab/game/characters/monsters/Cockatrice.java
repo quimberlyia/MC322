@@ -1,8 +1,7 @@
 package com.rpglab.game.characters.monsters;
 
-import com.rpglab.game.battle.moves.PetrifyingGaze;
-import com.rpglab.game.battle.moves.TailSwipe;
 import com.rpglab.game.characters.Monster;
+import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.items.Weapon;
 
 /**
@@ -28,15 +27,13 @@ public class Cockatrice extends Monster {
      * Automatically equips the cockatrice with Petrifying Gaze and Tail Swipe
      * combat actions.
      * 
-     * @param name The cockatrice's name
      * @param healthPoints The cockatrice's initial health points
      * @param strength The cockatrice's strength value
      * @param experience The experience points awarded when this cockatrice is defeated
      * @param loot Array of weapons this cockatrice can drop as loot
+     * @param moves List of shared instances of combat action
      */
-    public Cockatrice(String name, int healthPoints, int strength, int experience, Weapon[] loot) {
-        super(name, healthPoints, strength, experience, loot);
-        addAction(new PetrifyingGaze());
-        addAction(new TailSwipe());
+    public Cockatrice(int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
+        super("Cockatrice", healthPoints, strength, experience, loot, moves);
     }
 }

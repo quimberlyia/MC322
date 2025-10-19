@@ -1,5 +1,6 @@
 package com.rpglab.game;
 
+import com.rpglab.game.battle.moves.*;
 import com.rpglab.game.Exceptions.InvalidWeaponException;
 import com.rpglab.game.characters.Hero;
 import com.rpglab.game.characters.Monster;
@@ -76,10 +77,15 @@ public class Main {
             // Implements Dungeon World
             DungeonWorld dungeon = new DungeonWorld(difficulty);
 
+            // Create shared combat action instances for heroes
+            CombatAction powerfulSpell = new PowerfulSpell();
+            CombatAction healingPotion = new HealingPotion();
+            CombatAction preciseShot = new PreciseShot();
+
             // Implements hero selection
             Hero[] heroes = {
-                new Mage("Wizard of Oz", 200, 15, 50, 0.8),
-                new Archer("Artemis", 300, 10, 30, 0.8)
+                new Mage("Wizard of Oz", 200, 15, 50, 0.8, new CombatAction[] { powerfulSpell, healingPotion }),
+                new Archer("Artemis", 300, 10, 30, 0.8, new CombatAction[] { preciseShot, healingPotion })
             };
 
             int heroChoice = menu.displayMenu("Select Your Hero", new String[] {"Mage - Wizard of Oz", "Archer - Artemis"});

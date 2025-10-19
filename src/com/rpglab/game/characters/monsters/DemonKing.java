@@ -1,8 +1,7 @@
 package com.rpglab.game.characters.monsters;
 
-import com.rpglab.game.battle.moves.DarkSlash;
-import com.rpglab.game.battle.moves.DarkSpell;
 import com.rpglab.game.characters.Monster;
+import com.rpglab.game.interfaces.CombatAction;
 import com.rpglab.game.items.Weapon;
 
 /**
@@ -31,15 +30,13 @@ public class DemonKing extends Monster {
      * Automatically equips the Demon King with Dark Slash and Dark Spell
      * combat actions, representing his mastery of both martial and magical combat.
      * 
-     * @param name The Demon King's name
      * @param healthPoints The Demon King's initial health points
      * @param strength The Demon King's strength value
      * @param experience The experience points awarded when the Demon King is defeated
      * @param loot Array of weapons the Demon King can drop as loot
+     * @param moves List of shared instances of combat action
      */
-    public DemonKing(String name, int healthPoints, int strength, int experience, Weapon[] loot) {
-        super(name, healthPoints, strength, experience, loot);
-        addAction(new DarkSlash());
-        addAction(new DarkSpell());
+    public DemonKing(int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
+        super("Demon King", healthPoints, strength, experience, loot, moves);
     }
 }

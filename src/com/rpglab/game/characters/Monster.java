@@ -72,10 +72,13 @@ public class Monster extends Character implements Lootable  {
      * @param experience The experience points awarded when this monster is defeated
      * @param loot Array of weapons this monster can drop as loot
      */
-    public Monster(String name, int healthPoints, int strength, int experience, Weapon[] loot) {
+    public Monster(String name, int healthPoints, int strength, int experience, Weapon[] loot, CombatAction[] moves) {
         super(name, healthPoints, strength);
         this.experience = experience;
         this.loot = loot;
+        for (CombatAction move : moves) {
+            addAction(move);
+        }
     }
 
     /**
