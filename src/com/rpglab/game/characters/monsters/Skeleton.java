@@ -35,4 +35,16 @@ public class Skeleton extends Monster {
     public Skeleton(int healthPoints, int strength, int experience, WeaponType[] lootTable, CombatAction[] moves) {
         super("Skeleton", healthPoints, strength, experience, lootTable, moves);
     }
+
+        // This constructor is required for JAXB to instantiate the class during XML deserialization
+        protected Skeleton() {
+            super();
+        }
+
+        @Override
+        public void initActions() {
+            this.actions.clear();
+            addAction(new RustySword());
+            addAction(new Tackle());
+        }
 }

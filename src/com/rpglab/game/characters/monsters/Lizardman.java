@@ -37,4 +37,17 @@ public class Lizardman extends Monster {
     public Lizardman(int healthPoints, int strength, int experience, WeaponType[] lootTable, CombatAction[] moves) {
         super("Lizardman", healthPoints, strength, experience, lootTable, moves);
     }
+
+        // This constructor is required for JAXB to instantiate the class during XML deserialization
+        protected Lizardman() {
+            super();
+        }
+
+        @Override
+        public void initActions() {
+            this.actions.clear();
+            addAction(new PoisonousBite());
+            addAction(new ClawSwipe());
+            addAction(new TailWhip());
+        }
 }

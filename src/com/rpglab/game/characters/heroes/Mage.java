@@ -25,6 +25,11 @@ public class Mage extends Hero {
     /** The mage's current mana points, used for casting spells */
     private int mana;
 
+    // No-arg constructor for JAXB
+    protected Mage() {
+        super();
+    }
+
     /**
      * Constructs a new Mage with the specified attributes.
      * The mage is automatically equipped with a staff and gains access

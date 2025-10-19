@@ -1,5 +1,19 @@
 package com.rpglab.game.items;
 import com.rpglab.game.interfaces.Item;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlSeeAlso;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso({
+    com.rpglab.game.items.weapons.Bow.class,
+    com.rpglab.game.items.weapons.Staff.class,
+    com.rpglab.game.items.weapons.SuperBow.class,
+    com.rpglab.game.items.weapons.WillowStaff.class,
+    com.rpglab.game.items.weapons.MoonStaff.class,
+    com.rpglab.game.items.weapons.ExtremeSuperBow.class,
+    com.rpglab.game.items.weapons.Sword.class
+})
 
 /**
  * Abstract base class for all weapons in the Dungeon Adventure RPG.
@@ -24,6 +38,10 @@ public abstract class Weapon implements Item {
     
     /** The name of this weapon */
     private String name;
+
+    // This constructor is required for JAXB to instantiate the class during XML deserialization
+    public Weapon() {
+    }
 
     /**
      * Category of the weapon used to identify compatible hero classes.
