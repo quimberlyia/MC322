@@ -30,6 +30,8 @@ public class Battle {
     private CombatScene[] scenes;
 
     private int currentPhase = 0;
+    
+    private int currentMonsterIndex = 0; // Track which monster within the phase
 
     private Hero hero;
     
@@ -41,13 +43,15 @@ public class Battle {
         this.difficulty = difficulty;
         this.hero = hero;
         this.currentPhase = 0;
+        this.currentMonsterIndex = 0;
         this.scenes = null; // Will be generated on demand
     }
 
-    public Battle(Difficulty difficulty, Hero hero, int currentPhase) {
+    public Battle(Difficulty difficulty, Hero hero, int currentPhase, int currentMonsterIndex) {
         this.difficulty = difficulty;
         this.hero = hero;
         this.currentPhase = currentPhase;
+        this.currentMonsterIndex = currentMonsterIndex;
         this.scenes = null; // Will be generated on demand
     }
 
@@ -82,7 +86,7 @@ public class Battle {
         };
         int idx = Math.max(0, Math.min(heroes.length - 1, heroChoice - 1));
         Hero chosen = heroes[idx];
-        return new Battle(difficulty, chosen, 0);
+        return new Battle(difficulty, chosen, 0, 0);
     }
 
     /**
@@ -97,7 +101,9 @@ public class Battle {
         CombatScene scene = allScenes[currentPhase];
         scene.Start(hero);
 
-        for (Monster monster : scene.getMonsters()) {
+        Monster[] monsters = scene.getMonsters();
+        for (int monsterIdx = currentMonsterIndex; monsterIdx < monsters.length; monsterIdx++) {
+            Monster monster = monsters[monsterIdx];
             System.out.println();
             System.out.println(GameDisplay.RED + GameDisplay.BOLD + "COMBAT ENCOUNTER" + GameDisplay.RESET);
             System.out.println(GameDisplay.RED + monster.getName() + " approaches for battle!" + GameDisplay.RESET);
@@ -157,9 +163,10 @@ public class Battle {
                     System.out.println("Exiting the game...");
                     return false;
                 } else if (battleChoice == 4) {
-                    // Save game - just save difficulty, hero, and currentPhase
+                    // Save game - save difficulty, hero, currentPhase, and next monster to fight
                     String saveName = "savefile";//com.rpglab.game.utils.InputManager.readString("Save name: ");
-                    Battle toSave = new Battle(difficulty, hero, currentPhase);
+                    // Save with next monster index (current monster already defeated)
+                    Battle toSave = new Battle(difficulty, hero, currentPhase, monsterIdx + 1);
                     com.rpglab.game.utils.PersistenceGenerator.saveGame(toSave, saveName);
                 } else if (battleChoice == 3) {
                     // Continue gameplay
@@ -198,6 +205,7 @@ public class Battle {
         System.out.println("────────────────────────────────────────────────────────────────────");
         
         currentPhase++;
+        currentMonsterIndex = 0; // Reset for next phase
         return currentPhase < scenes.length;
     }
 }
